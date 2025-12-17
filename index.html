@@ -1,0 +1,2300 @@
+<!-- 
+  SINGLE FILE SOURCE CODE - SAFEKEY PRO
+  Version: 1.0.0 (Consistent Theme Update)
+-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- App Metadata -->
+    <title>SafeKey Pro</title>
+    <meta name="description" content="Create secure, customizable passwords instantly with advanced settings and secure storage.">
+    <meta name="application-name" content="SafeKey Pro">
+    <meta name="apple-mobile-web-app-title" content="SafeKey Pro">
+    <meta name="theme-color" content="#4f46e5">
+    
+    <!-- PWA Settings -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Embedded Manifest (Data URI) -->
+    <link rel="manifest" href='data:application/json;charset=utf-8,%7B%22name%22%3A%22SafeKey%20Pro%22%2C%22short_name%22%3A%22SafeKey%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23eff6ff%22%2C%22theme_color%22%3A%22%234f46e5%22%2C%22orientation%22%3A%22portrait%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F3064%2F3064197.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%7D%2C%7B%22src%22%3A%22https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F3064%2F3064197.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D'>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    <style>
+        :root {
+            /* Default (Light) */
+            --primary: #4f46e5;
+            --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            --bg-body: #eff6ff;
+            --surface: #ffffff;
+            --surface-secondary: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --danger: #ef4444;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --info: #3b82f6;
+            --header-bg: #4f46e5; 
+            --header-text: #ffffff; 
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            --radius-xl: 24px;
+            --radius-lg: 16px;
+            --font-main: 'Outfit', sans-serif;
+            --hidden-vault-bg: #312e81; /* Deep Indigo for Hidden Vault Mode */
+        }
+
+        /* Dark Mode */
+        body.theme-dark {
+            --bg-body: #0f172a;
+            --surface: #1e293b;
+            --surface-secondary: #334155;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --header-bg: #1e293b;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            --hidden-vault-bg: #050505;
+        }
+
+        /* Blue Neon Theme */
+        body.theme-neon {
+            --primary: #06b6d4;
+            --primary-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --bg-body: #080c14;
+            --surface: #111827;
+            --surface-secondary: #1f2937;
+            --text-main: #e2e8f0;
+            --text-muted: #64748b;
+            --border: #1e293b;
+            --header-bg: #111827;
+            --header-text: #06b6d4;
+            --shadow: 0 0 15px rgba(6, 182, 212, 0.15);
+            --hidden-vault-bg: #080c14;
+        }
+
+        /* Gradient Purple Theme */
+        body.theme-purple {
+            --primary: #a855f7;
+            --primary-gradient: linear-gradient(135deg, #d946ef 0%, #8b5cf6 100%);
+            --bg-body: #2e1065;
+            --surface: #4c1d95;
+            --surface-secondary: #5b21b6;
+            --text-main: #f3e8ff;
+            --text-muted: #d8b4fe;
+            --border: #6d28d9;
+            --header-bg: #4c1d95;
+            --header-text: #fff;
+            --hidden-vault-bg: #1e0b4b;
+        }
+
+        /* Cyber Green (Hacker) */
+        body.theme-green {
+            --primary: #22c55e;
+            --primary-gradient: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            --bg-body: #000000;
+            --surface: #0a0a0a;
+            --surface-secondary: #171717;
+            --text-main: #4ade80;
+            --text-muted: #15803d;
+            --border: #22c55e;
+            --header-bg: #000000;
+            --header-text: #22c55e;
+            --font-main: 'JetBrains Mono', monospace;
+            --radius-xl: 0px;
+            --radius-lg: 4px;
+            --hidden-vault-bg: #000000;
+        }
+
+        /* AMOLED Black */
+        body.theme-amoled {
+            --primary: #ffffff;
+            --primary-gradient: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            --bg-body: #000000;
+            --surface: #000000;
+            --surface-secondary: #111111;
+            --text-main: #ffffff;
+            --text-muted: #666666;
+            --border: #333333;
+            --header-bg: #000000;
+            --header-text: #ffffff;
+            --hidden-vault-bg: #000000;
+        }
+
+        /* Hidden Vault Mode Styling - (Logic disabled to keep consistent theme, CSS kept for reference) */
+        body.mode-hidden {
+            --header-bg: var(--hidden-vault-bg) !important;
+            --bg-body: var(--hidden-vault-bg) !important;
+            --surface: rgba(255, 255, 255, 0.05);
+            --surface-secondary: rgba(255, 255, 255, 0.03);
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+        body.mode-hidden .saved-card {
+            border-left: 4px solid var(--danger);
+            background: rgba(20, 20, 20, 0.6);
+        }
+        body.mode-hidden header {
+            border-bottom: 2px solid var(--danger);
+        }
+        body.mode-hidden .saved-title {
+            color: #f87171;
+        }
+
+        /* Privacy Mode (Anti-Screenshot Blur) */
+        body.privacy-active.blurred {
+            filter: blur(15px);
+            pointer-events: none;
+            user-select: none;
+        }
+        body.privacy-active {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        body {
+            margin: 0;
+            font-family: var(--font-main);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        /* RTL & Language Font Support */
+        html[dir="rtl"] { direction: rtl; text-align: right; }
+        html[dir="rtl"] body { font-family: 'Noto Naskh Arabic', var(--font-main); }
+        body.lang-hi { font-family: 'Noto Sans Devanagari', var(--font-main); }
+
+        /* --- Header --- */
+        header {
+            height: 70px;
+            padding: 0 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+            z-index: 10;
+            background-color: var(--header-bg);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding-top: env(safe-area-inset-top);
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.3s;
+        }
+
+        header h1 { 
+            font-size: 1.4rem; 
+            margin: 0; 
+            font-weight: 800; 
+            color: var(--header-text); 
+            letter-spacing: -0.5px;
+        }
+        
+        .header-actions { display:flex; gap: 8px; }
+
+        .header-btn { 
+            background: rgba(255, 255, 255, 0.15); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px; 
+            width: 40px; height: 40px;
+            font-size: 1.1rem; 
+            color: var(--header-text); 
+            cursor: pointer; 
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .header-btn:active { transform: scale(0.95); }
+
+        /* --- Main Content --- */
+        main {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 1.5rem 1.5rem 110px 1.5rem;
+            scroll-behavior: smooth;
+        }
+
+        .screen {
+            display: none;
+            animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .screen.active { display: block; }
+
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(15px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* --- Components --- */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+        }
+
+        .section-header {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin: 1.5rem 0 0.8rem 0.5rem;
+            font-weight: 700;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        /* Generator Tabs */
+        .gen-tabs {
+            display: flex;
+            background: var(--surface-secondary);
+            padding: 4px;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+        }
+        .gen-tab {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background: none;
+            border-radius: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .gen-tab.active {
+            background: var(--surface);
+            color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+
+        /* Display Hero */
+        .hero-display {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-display::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--primary-gradient);
+        }
+
+        .password-text {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            word-break: break-all;
+            line-height: 1.2;
+            color: var(--text-main);
+            min-height: 2.4rem;
+            margin-bottom: 1rem;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+        
+        .sub-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            min-height: 1.2rem;
+            font-family: monospace;
+            user-select: text;
+        }
+        
+        /* Strength Meter */
+        .strength-container {
+            background: var(--surface-secondary);
+            border-radius: 12px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .strength-info { flex: 1; text-align: start; }
+        
+        .strength-bars-track {
+            flex: 1.5; height: 6px; background: rgba(0,0,0,0.05); border-radius: 4px; overflow: hidden; display: flex;
+        }
+        body.theme-green .strength-bars-track, body.theme-neon .strength-bars-track { background: rgba(255,255,255,0.1); }
+        .s-bar { flex: 1; margin-right: 2px; opacity: 0.2; transition: all 0.3s; background: currentColor; }
+        .level-0 { color: var(--text-muted); }
+        .level-1 { color: var(--danger); }
+        .level-2 { color: var(--warning); }
+        .level-3 { color: var(--success); }
+        .level-4 { color: #00b894; }
+        
+        .level-1 .s-bar:nth-child(1) { opacity: 1; }
+        .level-2 .s-bar:nth-child(1), .level-2 .s-bar:nth-child(2) { opacity: 1; }
+        .level-3 .s-bar:nth-child(1), .level-3 .s-bar:nth-child(2), .level-3 .s-bar:nth-child(3) { opacity: 1; }
+        .level-4 .s-bar { opacity: 1; }
+
+        /* Actions */
+        .actions-grid { 
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 1.5rem; 
+        }
+        .action-btn {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 0.6rem; border-radius: var(--radius-lg);
+            color: var(--text-muted); cursor: pointer; transition: all 0.2s;
+        }
+        .action-btn i { font-size: 1.2rem; margin-bottom: 0.3rem; color: var(--text-main); }
+        .action-btn:hover i { color: var(--primary); }
+        .action-btn span { font-size: 0.65rem; white-space: nowrap; }
+        
+        .gen-btn-group { display: flex; gap: 10px; margin-bottom: 2rem; }
+        .btn-generate {
+            flex: 3; background: var(--primary-gradient); color: white; border: none; padding: 1.2rem; border-radius: var(--radius-xl); font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: transform 0.1s;
+        }
+        .btn-wizard {
+            flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl); color: var(--primary); font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        }
+        .btn-generate:active, .btn-wizard:active { transform: scale(0.97); }
+
+        /* Controls */
+        .control-group {
+            display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--border);
+        }
+        .control-group:last-child { border-bottom: none; }
+        
+        .slider-wrapper { padding: 1rem 0; }
+        .slider-header { display: flex; justify-content: space-between; margin-bottom: 1rem; align-items: center; }
+        .slider-val-badge { 
+            background: var(--primary); color: var(--bg-body); padding: 0.2rem 0.8rem; border-radius: 20px; font-weight: 700; font-size: 0.9rem; 
+            border: 1px solid var(--border);
+        }
+        input[type="range"] {
+            width: 100%; height: 6px; background: var(--surface-secondary); border-radius: 4px; outline: none; -webkit-appearance: none; border: 1px solid var(--border);
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--primary); cursor: pointer; border: 2px solid var(--surface); box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .toggle-switch { position: relative; width: 50px; height: 30px; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--surface-secondary); transition: .3s; border-radius: 34px; border: 1px solid var(--border);
+        }
+        .toggle-slider:before {
+            position: absolute; content: ""; height: 22px; width: 22px; left: 3px; bottom: 3px; background-color: var(--text-main); transition: .3s; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        html[dir="rtl"] .toggle-slider:before { left: auto; right: 3px; }
+        input:checked + .toggle-slider { background: var(--primary); border-color: var(--primary); }
+        input:checked + .toggle-slider:before { transform: translateX(20px); background-color: white; }
+        html[dir="rtl"] input:checked + .toggle-slider:before { transform: translateX(-20px); }
+
+        /* Saved Vault */
+        .saved-card {
+            background: var(--surface); border-radius: var(--radius-lg); padding: 1rem; margin-bottom: 1rem; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 0.8rem; position: relative; overflow: hidden;
+        }
+        .saved-card.favorite { border: 1px solid var(--warning); box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1); }
+        .saved-card.duplicate { border: 2px solid var(--danger); }
+        
+        .duplicate-badge { background: var(--danger); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; margin-left: auto; display: none; }
+        .saved-card.duplicate .duplicate-badge { display: inline-block; }
+
+        .saved-card::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--primary);
+        }
+        html[dir="rtl"] .saved-card::before { left: auto; right: 0; }
+        
+        .saved-header { display: flex; justify-content: space-between; align-items: center; }
+        .saved-title { font-weight: 700; font-size: 0.95rem; color: var(--primary); display: flex; align-items: center; gap: 6px; width: 100%; }
+        
+        .saved-pass-content { 
+            font-family: monospace; font-size: 1.1rem; font-weight: 600; color: var(--text-main); word-break: break-all; background: var(--surface-secondary); padding: 0.8rem; border-radius: 8px; letter-spacing: 1px;
+            user-select: text;
+            -webkit-user-select: text;
+        }
+        .saved-footer { display: flex; justify-content: space-between; align-items: center; }
+        .saved-meta { font-size: 0.7rem; color: var(--text-muted); display:flex; gap:10px; align-items:center; }
+        .saved-actions { display: flex; gap: 8px; }
+        
+        .icon-sm-btn {
+            width: 34px; height: 34px; border-radius: 10px; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.9rem; transition: background 0.2s;
+        }
+        .btn-copy { background: rgba(16, 185, 129, 0.1); color: var(--success); }
+        .btn-del { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+        .btn-star { background: var(--surface-secondary); color: var(--text-muted); }
+        .btn-star.active { color: var(--warning); background: rgba(245, 158, 11, 0.1); }
+        .btn-pin { background: rgba(59, 130, 246, 0.1); color: var(--info); }
+        .btn-pin.active { background: rgba(59, 130, 246, 0.3); transform: scale(1.05); }
+        .btn-vault { background: rgba(79, 70, 229, 0.1); color: var(--primary); }
+        .btn-restore { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        .btn-edit { background: rgba(59, 130, 246, 0.1); color: var(--info); }
+        .btn-vis { background: var(--surface-secondary); color: var(--text-muted); border: 1px solid var(--border); }
+        .btn-hide { background: rgba(99, 102, 241, 0.1); color: var(--primary); }
+
+        /* Tips & Notes */
+        .tip-card { 
+            background: var(--surface); padding: 1rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid var(--border); 
+        }
+        .tip-title { font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+        .tip-content { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+        
+        .note-card {
+            background: var(--surface); border-radius: var(--radius-lg); padding: 1rem; margin-bottom: 1rem; border: 1px solid var(--border);
+            border-left: 4px solid var(--border);
+        }
+        .note-card.note-red { border-left-color: var(--danger); }
+        .note-card.note-yellow { border-left-color: var(--warning); }
+        .note-card.note-blue { border-left-color: var(--info); }
+        .note-card.pinned { border: 2px solid var(--primary); background: var(--surface-secondary); }
+
+        .note-header { font-weight:700; color:var(--text-main); margin-bottom:0.5rem; display:flex; justify-content:space-between; }
+        .note-content { font-family: monospace; background: var(--surface-secondary); padding: 0.8rem; border-radius: 8px; font-size: 0.9rem; white-space: pre-wrap; color: var(--text-muted); word-break: break-all; }
+        .note-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; }
+        
+        .color-radios { display: flex; gap: 15px; margin-bottom: 1rem; justify-content: center; }
+        .color-radio { width: 30px; height: 30px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: transform 0.2s; }
+        .color-radio.selected { transform: scale(1.2); border-color: var(--text-main); }
+        .bg-red { background: var(--danger); }
+        .bg-yellow { background: var(--warning); }
+        .bg-blue { background: var(--info); }
+
+        /* Form Inputs */
+        .input-styled {
+            width: 100%; padding: 1rem; border: 1px solid var(--border); border-radius: 12px; background: var(--surface-secondary); color: var(--text-main); margin-bottom: 1rem; font-family: inherit; font-size: 16px;
+        }
+        .input-styled:focus { border-color: var(--primary); outline: none; }
+        select.input-styled { appearance: none; }
+
+        /* Navigation */
+        .nav-container { position: fixed; bottom: 20px; left: 0; right: 0; display: flex; justify-content: center; z-index: 100; padding-bottom: env(safe-area-inset-bottom); }
+        .floating-nav {
+            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.5); padding: 6px; border-radius: 30px; display: flex; box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        body.theme-dark .floating-nav, body.theme-neon .floating-nav, body.theme-purple .floating-nav, body.theme-green .floating-nav, body.theme-amoled .floating-nav { 
+            background: rgba(20, 20, 20, 0.85); border: 1px solid rgba(255,255,255,0.1); 
+        }
+
+        .nav-pill {
+            padding: 0.8rem 1.2rem; border-radius: 24px; border: none; background: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s;
+        }
+        .nav-pill.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        .nav-pill span { display: none; }
+        .nav-pill.active span { display: block; }
+
+        /* Modals & Toasts */
+        .toast {
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--text-main); color: var(--surface); padding: 0.8rem 1.5rem; border-radius: 30px; font-size: 0.9rem; font-weight: 500; opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 300; box-shadow: 0 5px 15px rgba(0,0,0,0.2); display: flex; align-items: center; gap: 8px; width: max-content;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 250; backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center;
+        }
+        .modal-overlay.active { display: flex; animation: fadeIn 0.2s; }
+        .modal-box {
+            background: var(--surface); width: 85%; max-width: 320px; padding: 2rem; border-radius: 24px; text-align: center; box-shadow: var(--shadow-lg); transform: scale(0.9); transition: transform 0.2s;
+        }
+        .modal-overlay.active .modal-box { transform: scale(1); }
+        .modal-icon { width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .modal-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+        .btn-modal { padding: 0.8rem; border-radius: 12px; border: none; font-weight: 600; cursor: pointer; }
+        .btn-modal-full { grid-column: 1 / -1; margin-top: 5px; }
+        
+        .empty-state { text-align: center; color: var(--text-muted); margin-top: 4rem; display: none; }
+        .history-item {
+            display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid var(--border);
+        }
+        .history-text { font-family: monospace; font-size: 1rem; }
+        
+        .pro-badge { background: linear-gradient(45deg, #f59e0b, #fcd34d); color: #000; font-size: 0.6rem; padding: 2px 6px; border-radius: 6px; font-weight: 800; margin-left: 5px; vertical-align: middle; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="theme-light">
+
+    <header>
+        <h1 id="header-title" data-i18n="appName">SafeKey Pro</h1>
+        <div class="header-actions">
+            <button class="header-btn" id="settings-btn" title="Settings">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Generator Screen -->
+        <div id="screen-generator" class="screen active">
+            
+            <div class="gen-tabs">
+                <button class="gen-tab active" id="tab-pass" data-i18n="tabPass">Password</button>
+                <button class="gen-tab" id="tab-story" data-i18n="tabStory">Story</button>
+                <button class="gen-tab" id="tab-identity" data-i18n="tabUsername">Username</button>
+            </div>
+            
+            <div class="hero-display">
+                <div class="password-wrapper">
+                    <div id="password-output" class="password-text">...</div>
+                    <div id="identity-sub" class="sub-text" style="display:none;"></div>
+                </div>
+                
+                <div class="strength-container" id="strength-container">
+                    <div class="strength-info">
+                        <span class="strength-title" data-i18n="strength">Strength</span>
+                        <span class="strength-val" id="strength-text" data-i18n="strWeak">Weak</span>
+                    </div>
+                    <div class="strength-bars-track level-0" id="strength-meter-color">
+                        <div class="s-bar"></div><div class="s-bar"></div><div class="s-bar"></div><div class="s-bar"></div>
+                    </div>
+                </div>
+
+                <div class="actions-grid">
+                    <button class="action-btn" id="action-copy">
+                        <i class="fa-regular fa-copy"></i><span data-i18n="btnCopy">Copy</span>
+                    </button>
+                    <button class="action-btn" id="action-save-direct">
+                        <i class="fa-regular fa-bookmark"></i><span data-i18n="btnSave">Save</span>
+                    </button>
+                    <button class="action-btn" id="action-hide">
+                        <i class="fa-regular fa-eye-slash" id="vis-icon-gen"></i><span id="vis-text-gen" data-i18n="btnHide">Hide</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="gen-btn-group">
+                <button class="btn-generate" id="generate-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="btnGen">Generate</span>
+                </button>
+                <button class="btn-wizard" id="wizard-btn" title="Smart Wizard">
+                    <i class="fa-solid fa-magic"></i>
+                </button>
+            </div>
+
+            <!-- Password Options -->
+            <div id="options-password">
+                <div class="section-header" data-i18n="config">Configuration</div>
+                <div class="card">
+                    <div class="slider-wrapper">
+                        <div class="slider-header">
+                            <span class="control-label" data-i18n="length">Length</span>
+                            <span class="slider-val-badge" id="length-val">12</span>
+                        </div>
+                        <input type="range" id="length-slider" min="4" max="50" value="12">
+                    </div>
+                </div>
+
+                <div class="section-header" data-i18n="charTypes">Character Types</div>
+                <div class="card">
+                    <div class="control-group">
+                        <span class="control-label" data-i18n="optUpper">Uppercase (A-Z)</span>
+                        <label class="toggle-switch"><input type="checkbox" id="opt-upper" checked><span class="toggle-slider"></span></label>
+                    </div>
+                    <div class="control-group">
+                        <span class="control-label" data-i18n="optLower">Lowercase (a-z)</span>
+                        <label class="toggle-switch"><input type="checkbox" id="opt-lower" checked><span class="toggle-slider"></span></label>
+                    </div>
+                    <div class="control-group">
+                        <span class="control-label" data-i18n="optNum">Numbers (0-9)</span>
+                        <label class="toggle-switch"><input type="checkbox" id="opt-number" checked><span class="toggle-slider"></span></label>
+                    </div>
+                    <div class="control-group">
+                        <span class="control-label" data-i18n="optSym">Symbols (!@#)</span>
+                        <label class="toggle-switch"><input type="checkbox" id="opt-symbol" checked><span class="toggle-slider"></span></label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-header" data-i18n="history">History</div>
+            <div class="card" id="history-list" style="padding: 0.5rem 1rem;">
+                <div style="text-align:center; padding: 1rem; color:var(--text-muted); font-size:0.9rem;" data-i18n="noHistory">No history yet</div>
+            </div>
+        </div>
+
+        <!-- Saved Passwords Screen -->
+        <div id="screen-saved" class="screen">
+            <div class="section-header">
+                <span data-i18n="yourVault" id="vault-title">Your Vault</span>
+                <div style="display:flex; gap:15px;">
+                     <i class="fa-solid fa-user-secret" id="btn-toggle-hidden" style="cursor:pointer; color:var(--text-muted); display:none;"></i>
+                </div>
+            </div>
+            <div id="saved-list"></div>
+            <div id="empty-state" class="empty-state">
+                <div style="width: 80px; height: 80px; background: var(--surface); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: var(--shadow);">
+                    <i class="fa-solid fa-folder-open" style="font-size: 2rem; opacity: 0.5;"></i>
+                </div>
+                <h3 style="margin: 0; color: var(--text-main);" data-i18n="noPasswords">No passwords yet</h3>
+            </div>
+        </div>
+
+        <!-- Recycle Bin Screen -->
+        <div id="screen-recycle" class="screen">
+            <div class="section-header" style="display:flex; justify-content:space-between; align-items:center;">
+                <span data-i18n="recycleBin">Recycle Bin</span>
+                <button id="btn-empty-bin" style="border:none; background:none; color:var(--danger); font-size:1.1rem; padding: 5px;"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            <div id="recycle-list"></div>
+            <div id="recycle-empty" class="empty-state">
+                <p data-i18n="binEmpty">Recycle Bin is empty</p>
+            </div>
+        </div>
+        
+        <!-- Secure Notes Screen -->
+        <div id="screen-notes" class="screen">
+            <div class="section-header" style="display:flex; justify-content:space-between; align-items:center;">
+                <span data-i18n="secureNotes">Secure Notes</span>
+                <button id="btn-add-note" style="border:none; background:var(--primary); color:white; padding:5px 12px; border-radius:8px; font-weight:600;"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            
+            <div id="notes-list"></div>
+            <div id="notes-empty" class="empty-state">
+                <p data-i18n="noNotes">No secure notes yet.</p>
+            </div>
+
+            <!-- Add Note Form -->
+            <div id="note-form" style="display:none; margin-top:1rem;">
+                 <input type="text" id="note-title" class="input-styled" data-i18n="noteTitlePlace" placeholder="Title (e.g. Bank PIN)">
+                 <div class="color-radios">
+                     <div class="color-radio bg-red" data-color="red" title="Urgent"></div>
+                     <div class="color-radio bg-yellow" data-color="yellow" title="Reminder"></div>
+                     <div class="color-radio bg-blue selected" data-color="blue" title="Info"></div>
+                 </div>
+                 <textarea id="note-content" class="input-styled" rows="4" data-i18n="noteContentPlace" placeholder="Secret Content..."></textarea>
+                 <div style="display:flex; gap:10px;">
+                     <button class="btn-generate" id="save-note-btn" style="flex:1; margin-bottom:0;" data-i18n="btnSave">Save</button>
+                     <button class="btn-generate" id="cancel-note-btn" style="flex:1; background:var(--surface-secondary); color:var(--text-main); margin-bottom:0;" data-i18n="btnCancel">Cancel</button>
+                 </div>
+            </div>
+        </div>
+
+        <!-- Tips Screen -->
+        <div id="screen-tips" class="screen">
+            <div class="section-header">Security Academy <span class="pro-badge">PRO</span></div>
+            <div id="tips-list"></div>
+        </div>
+
+        <!-- Settings Screen -->
+        <div id="screen-settings" class="screen">
+            <div class="section-header" data-i18n="general">General</div>
+            <div class="card">
+                <div class="control-group">
+                    <span class="control-label" data-i18n="language">Language</span>
+                    <select id="lang-select" class="input-styled" style="width: 120px; padding: 0.5rem; margin:0;">
+                        <option value="en">English</option>
+                        <option value="ur">اردو</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="ar">العربية</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <span class="control-label"><span data-i18n="proTheme">Pro Theme</span> <span class="pro-badge">PRO</span></span>
+                    <select id="theme-select" class="input-styled" style="width: 140px; padding: 0.5rem; margin:0;">
+                        <option value="light" data-i18n="lightTheme">Light (Default)</option>
+                        <option value="dark" data-i18n="darkTheme">Dark Mode</option>
+                        <option value="neon" data-i18n="neonTheme">Blue Neon</option>
+                        <option value="purple" data-i18n="purpleTheme">Gradient Purple</option>
+                        <option value="green" data-i18n="greenTheme">Cyber Green</option>
+                        <option value="amoled" data-i18n="amoledTheme">AMOLED Black</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <span class="control-label"><span data-i18n="shakeGen">Shake to Generate</span> <span class="pro-badge">PRO</span></span>
+                    <label class="toggle-switch"><input type="checkbox" id="setting-shake"><span class="toggle-slider"></span></label>
+                </div>
+                <div class="control-group">
+                    <span class="control-label"><span data-i18n="dailySuggest">Daily Password</span> <span class="pro-badge">PRO</span></span>
+                    <label class="toggle-switch"><input type="checkbox" id="setting-daily-suggest"><span class="toggle-slider"></span></label>
+                </div>
+            </div>
+
+            <div class="section-header" data-i18n="security">Security</div>
+            <div class="card">
+                <div class="control-group">
+                    <span class="control-label" data-i18n="recycleExpiry">Recycle Bin Auto-Delete</span>
+                    <select id="expiry-select" class="input-styled" style="width: 120px; padding: 0.5rem; margin:0;">
+                        <option value="0" data-i18n="never">Never</option>
+                        <option value="30" data-i18n="days30">30 Days</option>
+                        <option value="60" data-i18n="days60">60 Days</option>
+                        <option value="90" data-i18n="days90">90 Days</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <span class="control-label"><span data-i18n="vaultLock">Hidden Vault PIN</span> <span class="pro-badge">PRO</span></span>
+                    <label class="toggle-switch"><input type="checkbox" id="setting-pin-lock"><span class="toggle-slider"></span></label>
+                </div>
+                 <div class="control-group" id="btn-change-pin" style="cursor:pointer; display:none;">
+                    <span class="control-label" data-i18n="changePin">Change PIN</span>
+                    <i class="fa-solid fa-chevron-right" style="color:var(--text-muted)"></i>
+                </div>
+            </div>
+
+             <div class="section-header" data-i18n="extras">Extras</div>
+            <div class="card">
+                <div class="control-group" id="btn-open-notes" style="cursor:pointer;">
+                    <span class="control-label"><span data-i18n="secureNotes">Secure Notes</span> <span class="pro-badge">PRO</span></span>
+                    <i class="fa-solid fa-chevron-right" style="color:var(--text-muted)"></i>
+                </div>
+                <div class="control-group" id="btn-open-tips" style="cursor:pointer;">
+                    <span class="control-label"><span data-i18n="securityTips">Security Tips</span> <span class="pro-badge">PRO</span></span>
+                    <i class="fa-solid fa-chevron-right" style="color:var(--text-muted)"></i>
+                </div>
+                <div class="control-group" id="btn-open-recycle" style="cursor:pointer;">
+                    <span class="control-label" data-i18n="recycleBin">Recycle Bin</span>
+                    <i class="fa-solid fa-chevron-right" style="color:var(--text-muted)"></i>
+                </div>
+            </div>
+
+            <div class="section-header" data-i18n="support">Support</div>
+            <div class="card">
+                <textarea class="input-styled" id="contact-msg" data-i18n="msgPlaceholder" placeholder="Write your message..." rows="3" style="resize: none;"></textarea>
+                <button class="btn-generate" id="contact-send" style="margin-top: 0; padding: 0.8rem; font-size: 1rem; width: 100%;" data-i18n="btnSend">Send Message</button>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem; margin-bottom: 2rem;">
+                <p style="font-weight: 600;" data-i18n="appVersion">SafeKey Pro 1.0.0</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Nav -->
+    <div class="nav-container">
+        <div class="floating-nav" id="main-nav">
+            <button class="nav-pill active" data-target="generator">
+                <i class="fa-solid fa-shield-halved"></i><span data-i18n="navGen">Generator</span>
+            </button>
+            <button class="nav-pill" data-target="saved">
+                <i class="fa-solid fa-wallet"></i><span data-i18n="navVault">Vault</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"><i class="fa-solid fa-circle-check" style="color: var(--success)"></i> <span id="toast-msg">Copied!</span></div>
+
+    <!-- Daily Modal -->
+    <div id="daily-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-icon" style="background:var(--surface-secondary); color:var(--warning);"><i class="fa-solid fa-sun"></i></div>
+            <h3 class="modal-title" data-i18n="dailyTitle">Daily Suggestion</h3>
+            <p class="modal-desc" data-i18n="dailyDesc">Your fresh secure password for today:</p>
+            <div id="daily-password" style="font-family:monospace; background:var(--surface-secondary); padding:1rem; border-radius:12px; margin:1rem 0; font-weight:700; word-break:break-all;"></div>
+            <div class="modal-btns">
+                <button class="btn-modal" style="background:var(--surface-secondary); color:var(--text-main);" id="daily-close" data-i18n="btnCancel">Cancel</button>
+                <button class="btn-modal" style="background:var(--primary); color:white;" id="daily-copy" data-i18n="btnCopy">Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="confirm-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-icon"><i class="fa-solid fa-trash-can"></i></div>
+            <h3 class="modal-title" data-i18n="deleteTitle">Delete?</h3>
+            <p class="modal-desc" id="confirm-desc" data-i18n="deleteDesc">Move to Recycle Bin?</p>
+            <div class="modal-btns">
+                <button class="btn-modal" style="background:var(--surface-secondary); color:var(--text-main);" id="modal-cancel" data-i18n="btnCancel">Cancel</button>
+                <button class="btn-modal" style="background:var(--danger); color:white;" id="modal-delete" data-i18n="btnDelete">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save Title Modal -->
+    <div id="save-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-icon" style="background:var(--surface-secondary); color:var(--primary);"><i class="fa-solid fa-bookmark"></i></div>
+            <h3 class="modal-title">Save Item</h3>
+            <p class="modal-desc" style="margin-bottom:1rem;">Enter a title for this item</p>
+            <input type="text" id="modal-save-title" class="input-styled" placeholder="e.g. Facebook, Instagram">
+            <div class="modal-btns">
+                <button class="btn-modal" style="background:var(--surface-secondary); color:var(--text-main);" id="save-cancel" data-i18n="btnCancel">Cancel</button>
+                <button class="btn-modal" style="background:var(--primary); color:white;" id="save-confirm" data-i18n="btnSave">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wizard Modal -->
+    <div id="wizard-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-icon" style="background:var(--surface-secondary); color:var(--primary);"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <h3 class="modal-title" data-i18n="wizardTitle">Smart Wizard</h3>
+            <p class="modal-desc" data-i18n="wizardDesc">What is this password for?</p>
+            
+            <button class="btn-modal btn-modal-full" id="wiz-basic" style="background:var(--surface-secondary); border:1px solid var(--border); color:var(--text-main);">
+                <i class="fa-brands fa-instagram"></i> <span data-i18n="wizBasic">Social Media (Basic)</span>
+            </button>
+            <button class="btn-modal btn-modal-full" id="wiz-strong" style="background:var(--surface-secondary); border:1px solid var(--border); color:var(--primary);">
+                <i class="fa-solid fa-building-columns"></i> <span data-i18n="wizStrong">Banking (Strong)</span>
+            </button>
+            <button class="btn-modal btn-modal-full" id="wiz-ultra" style="background:var(--surface-secondary); border:1px solid var(--border); color:var(--danger);">
+                <i class="fa-solid fa-shield-cat"></i> <span data-i18n="wizUltra">Ultimate (Fort Knox)</span>
+            </button>
+            
+            <button class="btn-modal" style="margin-top:1rem; width:100%; color:var(--text-muted);" id="wiz-cancel" data-i18n="btnCancel">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Setup/Verify PIN Modal -->
+    <div id="pin-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-icon" style="background:var(--surface-secondary); color:var(--success);"><i class="fa-solid fa-lock"></i></div>
+            <h3 class="modal-title" id="pin-modal-title" data-i18n="setupPin">Setup PIN</h3>
+            <p class="modal-desc" id="pin-modal-desc" data-i18n="pinDesc">Create 4-digit PIN</p>
+            <input type="tel" id="pin-input-field" class="input-styled" maxlength="4" style="text-align:center; letter-spacing:8px; font-size:1.5rem;" data-i18n="pinPlaceholder" placeholder="••••">
+            
+            <div class="modal-btns">
+                <button class="btn-modal" style="background:var(--surface-secondary);" id="pin-modal-cancel" data-i18n="btnCancel">Cancel</button>
+                <button class="btn-modal" style="background:var(--primary); color:white;" id="pin-modal-confirm" data-i18n="btnSave">Confirm</button>
+            </div>
+            <!-- Dynamic Reset Button Container -->
+            <div id="pin-reset-container" style="margin-top:10px; display:none;">
+                <button class="btn-modal" style="width:100%; background:none; border:1px solid var(--danger); color:var(--danger);" id="pin-modal-reset">Reset PIN</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- OTP / Reset PIN Modal -->
+    <div id="otp-modal" class="modal-overlay">
+        <div class="modal-box">
+            <div class="modal-icon" style="background:var(--surface-secondary); color:var(--danger);"><i class="fa-solid fa-key"></i></div>
+            <h3 class="modal-title">Reset Vault</h3>
+            <p class="modal-desc">Send request to get OTP</p>
+            
+            <div id="otp-step-1">
+                <button class="btn-generate" id="btn-request-otp" style="font-size: 0.9rem; padding: 0.8rem; margin-bottom: 1rem;">
+                    <i class="fa-solid fa-paper-plane"></i> Request OTP via Email
+                </button>
+                <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:1rem;">Check email & enter code below.</div>
+                <input type="number" id="otp-input" class="input-styled" placeholder="Enter OTP" style="text-align:center; letter-spacing:4px;" autocomplete="one-time-code">
+            </div>
+
+            <div class="modal-btns">
+                <button class="btn-modal" style="background:var(--surface-secondary);" id="otp-cancel" data-i18n="btnCancel">Cancel</button>
+                <button class="btn-modal" style="background:var(--primary); color:white;" id="otp-verify">Verify</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Translations ---
+        const translations = {
+            en: {
+                appName: "SafeKey Pro", tabPass: "Password", tabUsername: "Username", tabStory: "Story", strength: "Strength",
+                strWeak: "Weak", strGood: "Good", strStrong: "Strong", btnCopy: "Copy", btnSave: "Save",
+                btnGen: "Generate", config: "Configuration", length: "Length",
+                charTypes: "Character Types", optUpper: "Uppercase (A-Z)", optLower: "Lowercase (a-z)",
+                optNum: "Numbers (0-9)", optSym: "Symbols (!@#)", history: "History", noHistory: "No history yet",
+                yourVault: "Your Vault", noPasswords: "No saved items",
+                general: "General", language: "Language", 
+                security: "Security", vaultLock: "Hidden Vault PIN", recycleBin: "Recycle Bin", support: "Support",
+                navGen: "Generator", navVault: "Vault", btnCancel: "Cancel",
+                deleteTitle: "Delete?", deleteDesc: "Move to Recycle Bin?", btnDelete: "Delete",
+                setupPin: "Setup PIN", pinDesc: "Create 4-digit PIN", vaultLocked: "Vault Locked", enterPin: "Enter PIN",
+                emptyAll: "Empty All", binEmpty: "Bin is empty", btnHide: "Hide", btnShow: "Show", 
+                changePin: "Change PIN", verifyPin: "Verify PIN", enterCurrentPin: "Enter current PIN", enterNewPin: "Enter new PIN",
+                secureNotes: "Secure Notes", noNotes: "No secure notes yet.", btnSend: "Send Message",
+                securityTips: "Security Tips", extras: "Extras", masterKey: "Master Encryption Key",
+                btnEdit: "Edit", btnRestore: "Restore", noteTitle: "Title", noteContent: "Secret Content",
+                confirmPermDelete: "Permanently Delete?", confirmExit: "Confirm",
+                recycleExpiry: "Recycle Bin Auto-Delete", never: "Never", days30: "30 Days", days60: "60 Days", days90: "90 Days",
+                proTheme: "Pro Theme", haptic: "Haptic Feedback", antiScreen: "Anti-Screenshot Mode",
+                lightTheme: "Light (Default)", darkTheme: "Dark Mode", neonTheme: "Blue Neon", purpleTheme: "Gradient Purple",
+                greenTheme: "Cyber Green", amoledTheme: "AMOLED Black",
+                genPlaceholder: "App Name (e.g. Facebook)", msgPlaceholder: "Write your message...",
+                masterKeyDesc: "Set a custom key for secure operations.", masterKeyPlaceholder: "Enter Custom Key",
+                noteTitlePlace: "Title (e.g. Bank PIN)", noteContentPlace: "Secret Content...", pinPlaceholder: "••••",
+                appVersion: "SafeKey Pro 1.0.0",
+                wizardTitle: "Smart Wizard", wizardDesc: "What is this password for?", wizBasic: "Social Media (Basic)",
+                wizStrong: "Banking (Strong)", wizUltra: "Ultimate (Fort Knox)",
+                autoLock: "Timer Auto Lock", sec10: "10 Seconds", sec30: "30 Seconds", min1: "1 Minute",
+                duplicateError: "Duplicate! Already in Vault.", duplicateFound: "Duplicate",
+                fakePin: "Set Fake PIN", setFakePin: "Set Fake PIN", backup: "Backup (Encrypted File)", exportBackup: "Export",
+                hackerAlert: "Warning: Unauthorized access attempts detected!",
+                hiddenVault: "Hidden Vault", setupHiddenPin: "Hidden Vault PIN", moveToHidden: "Hide", unhide: "Unhide",
+                hiddenDesc: "For Banking & Crypto", enterHiddenPin: "Enter Hidden PIN",
+                dailyTitle: "Daily Suggestion", dailyDesc: "Your fresh secure password for today:",
+                dailySuggest: "Daily Password", shakeGen: "Shake to Generate",
+                confirmEmptyBin: "Permanently delete all items?", msgCopied: "Copy"
+            },
+            ur: {
+                appName: "SafeKey Pro", tabPass: "پاس ورڈ", tabUsername: "یوزر نام", tabStory: "اسٹوری", strength: "طاقت",
+                strWeak: "کمزور", strGood: "اچھا", strStrong: "مضبوط", btnCopy: "کاپی", btnSave: "محفوظ",
+                btnGen: "تخلیق کریں", config: "ترتیبات", length: "لمبائی",
+                charTypes: "حروف کی اقسام", optUpper: "بڑے حروف (A-Z)", optLower: "چھوٹے حروف (a-z)",
+                optNum: "نمبر (0-9)", optSym: "علامات (!@#)", history: "ہسٹری", noHistory: "کوئی ریکارڈ نہیں",
+                yourVault: "آپ کا والٹ", noPasswords: "کوئی پاس ورڈ نہیں",
+                general: "عام", language: "زبان", 
+                security: "سیکیورٹی", vaultLock: "خفیہ والٹ پن", recycleBin: "ری سائیکل بن", support: "سپورٹ",
+                navGen: "جنریٹر", navVault: "والٹ", btnCancel: "منسوخ",
+                deleteTitle: "حذف کریں؟", deleteDesc: "ری سائیکل بن میں منتقل؟", btnDelete: "حذف",
+                setupPin: "پن سیٹ کریں", pinDesc: "4 ہندسوں کا پن بنائیں", vaultLocked: "والٹ مقفل ہے", enterPin: "پن درج کریں",
+                emptyAll: "خالی کریں", binEmpty: "بن خالی ہے", btnHide: "چھپائیں", btnShow: "دکھائیں", 
+                changePin: "پن تبدیل کریں", verifyPin: "تصدیق کریں", enterCurrentPin: "موجودہ پن درج کریں", enterNewPin: "نیا پن درج کریں",
+                secureNotes: "محفوظ نوٹس", noNotes: "کوئی نوٹس نہیں", btnSend: "پیغام بھیجیں",
+                securityTips: "سیکیورٹی ٹپس", extras: "اضافی", masterKey: "ماسٹر انکرپشن کی",
+                btnEdit: "ترمیم", btnRestore: "بحال کریں", noteTitle: "عنوان", noteContent: "خفیہ مواد",
+                confirmPermDelete: "مستقل طور پر حذف؟", confirmExit: "تصدیق",
+                recycleExpiry: "ری سائیکل بن آٹو ڈیلیٹ", never: "کبھی نہیں", days30: "30 دن", days60: "60 دن", days90: "90 دن",
+                proTheme: "پرو تھیم", haptic: "ہیپٹک فیڈ بیک", antiScreen: "اینٹی اسکرین شاٹ موڈ",
+                lightTheme: "لائٹ (ڈیفالٹ)", darkTheme: "ڈارک موڈ", neonTheme: "نیلا نیین", purpleTheme: "گریڈینٹ پرپل",
+                greenTheme: "سائبر گرین", amoledTheme: "AMOLED سیاہ",
+                genPlaceholder: "ایپ کا نام (جیسے فیس بک)", msgPlaceholder: "اپنا پیغام لکھیں...",
+                masterKeyDesc: "محفوظ آپریشنز کے لیے کسٹم کی سیٹ کریں", masterKeyPlaceholder: "کسٹم کی درج کریں",
+                noteTitlePlace: "عنوان (جیسے بینک پن)", noteContentPlace: "خفیہ مواد...", pinPlaceholder: "••••",
+                appVersion: "SafeKey Pro 1.6.0",
+                wizardTitle: "اسمارٹ وزرڈ", wizardDesc: "پاس ورڈ کس لیے ہے؟", wizBasic: "سوشل میڈیا",
+                wizStrong: "بینکنگ (مضبوط)", wizUltra: "انتہائی محفوظ",
+                autoLock: "آٹو لاک ٹائمر", sec10: "10 سیکنڈ", sec30: "30 سیکنڈ", min1: "1 منٹ",
+                duplicateError: "ڈپلیکیٹ! والٹ میں موجود ہے۔", duplicateFound: "ڈپلیکیٹ",
+                fakePin: "جعلی پن سیٹ کریں", setFakePin: "جعلی پن", backup: "بیک اپ (انکرپٹڈ)", exportBackup: "ایکسپورٹ",
+                hackerAlert: "चेतावनी: अनधिकृत पहुंच के प्रयास!",
+                hiddenVault: "خفیہ والٹ", setupHiddenPin: "خفیہ پن سیٹ کریں", moveToHidden: "چھپائیں", unhide: "ظاہر کریں",
+                hiddenDesc: "بینکنگ اور کریپٹو کے لیے", enterHiddenPin: "خفیہ پن درج کریں",
+                dailyTitle: "اقتراح يومي", dailyDesc: "كلمة المرور الآمنة لليوم:",
+                dailySuggest: "روزانہ پاس ورڈ", shakeGen: "ہلا کر جنریٹ کریں",
+                confirmEmptyBin: "کیا آپ تمام آئٹمز کو مستقل طور پر حذف کرنا چاہتے ہیں؟", msgCopied: "کاپی"
+            },
+            hi: {
+                appName: "SafeKey Pro", tabPass: "पासवर्ड", tabUsername: "उपयोगकर्ता नाम", tabStory: "कहानी", strength: "शक्ति",
+                strWeak: "कमजोर", strGood: "अच्छा", strStrong: "मजबूत", btnCopy: "कॉपी", btnSave: "सहेजें",
+                btnGen: "बनाएं", config: "विन्यास", length: "लंबाई",
+                charTypes: "अक्षर प्रकार", optUpper: "बड़े अक्षर (A-Z)", optLower: "छोटे अक्षर (a-z)",
+                optNum: "अंक (0-9)", optSym: "प्रतीक (!@#)", history: "इतिहास", noHistory: "कोई इतिहास नहीं",
+                yourVault: "आपकी तिजोरी", noPasswords: "कोई पासवर्ड नहीं",
+                general: "सामान्य", language: "भाषा", 
+                security: "सुरक्षा", vaultLock: "गुप्त वॉल्ट पिन", recycleBin: "रीसायकल बिन", support: "सहयोग",
+                navGen: "जेनरेटर", navVault: "वॉल्ट", btnCancel: "रद्द करें",
+                deleteTitle: "हटाएं?", deleteDesc: "रीसायकल बिन में भेजें?", btnDelete: "हटाएं",
+                setupPin: "पिन सेट करें", pinDesc: "4 अंकों का पिन बनाएं", vaultLocked: "वॉल्ट लॉक है", enterPin: "पिन दर्ज करें",
+                emptyAll: "खाली करें", binEmpty: "बिन खाली है", btnHide: "छिपाएं", btnShow: "दिखाएं", 
+                changePin: "पिन बदलें", verifyPin: "पिन सत्यापित करें", enterCurrentPin: "वर्तमान पिन दर्ज करें", enterNewPin: "पिन दर्ज करें",
+                secureNotes: "सुरक्षित नोट्स", noNotes: "कोई नोट्स नहीं", btnSend: "संदेश भेजें",
+                securityTips: "सुरक्षा युक्तियाँ", extras: "अतिरिक्त", masterKey: "मास्टर एन्क्रिप्शन कुंजी",
+                btnEdit: "संपादित करें", btnRestore: "पुनर्स्थापित", noteTitle: "शीर्षक", noteContent: "गुप्त सामग्री",
+                confirmPermDelete: "स्थायी रूप से हटाएं?", confirmExit: "पुष्टि करें",
+                recycleExpiry: "रीसायकल बिन ऑटो-हटाना", never: "कभी नहीं", days30: "30 दिन", days60: "60 दिन", days90: "90 दिन",
+                proTheme: "प्रो थीम", haptic: "हैप्टिक फीडबैक", antiScreen: "एंटी-स्क्रीनशॉट मोड",
+                lightTheme: "लाइट (डिफ़ॉल्ट)", darkTheme: "डार्क मोड", neonTheme: "नीला नियॉन", purpleTheme: "ग्रेडिएंट पर्पल",
+                greenTheme: "साइबर ग्रीन", amoledTheme: "AMOLED काला",
+                genPlaceholder: "ऐप का नाम (जैसे फेसबुक)", msgPlaceholder: "अपना संदेश लिखें...",
+                masterKeyDesc: "सुरक्षित कार्यों के लिए कस्टम कुंजी सेट करें", masterKeyPlaceholder: "कस्टम कुंजी दर्ज करें",
+                noteTitlePlace: "शीर्षक (जैसे बैंक पिन)", noteContentPlace: "गुप्त सामग्री...", pinPlaceholder: "••••",
+                appVersion: "SafeKey Pro 1.6.0",
+                wizardTitle: "स्मार्ट विजार्ड", wizardDesc: "पासवर्ड किस लिए है?", wizBasic: "सोशल मीडिया",
+                wizStrong: "बैंकिंग (मजबूत)", wizUltra: "अल्ट्रा सिक्योर",
+                autoLock: "ऑटो लॉक टाइमर", sec10: "10 सेकंड", sec30: "30 सेकंड", min1: "1 मिनट",
+                duplicateError: "डुप्लीकेट! वॉल्ट में मौजूद है।", duplicateFound: "डुप्लीकेट",
+                fakePin: "फर्जी पिन सेट करें", setFakePin: "फर्जी पिन", backup: "बैकअप (एन्क्रिप्टेड)", exportBackup: "निर्यात",
+                hackerAlert: "चेतावनी: अनधिकृत पहुंच के प्रयास!",
+                hiddenVault: "गुप्त वॉल्ट", setupHiddenPin: "गुप्त वॉल्ट पिन", moveToHidden: "छिपाएं", unhide: "दिखाएं",
+                hiddenDesc: "बैंकिंग और क्रिप्टो के लिए", enterHiddenPin: "गुप्त पिन दर्ज करें",
+                dailyTitle: "दैनिक सुझाव", dailyDesc: "आज के लिए आपका सुरक्षित पासवर्ड:",
+                dailySuggest: "दैनिक पासवर्ड", shakeGen: "शेक टू जेनरेट",
+                confirmEmptyBin: "सभी आइटम स्थायी रूप से हटाएं?", msgCopied: "कॉपी"
+            },
+            ar: {
+                appName: "SafeKey Pro", tabPass: "كلمة المرور", tabUsername: "اسم المستخدم", tabStory: "قصة", strength: "القوة",
+                strWeak: "ضعيف", strGood: "جيد", strStrong: "قوي", btnCopy: "نسخ", btnSave: "حفظ",
+                btnGen: "توليد", config: "الإعدادات", length: "الطول",
+                charTypes: "أنواع الأحرف", optUpper: "أحرف كبيرة", optLower: "أحرف صغيرة",
+                optNum: "أرقام", optSym: "أرقام", history: "السجل", noHistory: "لا يوجد سجل",
+                yourVault: "المحفظة", noPasswords: "لا كلمات مرور",
+                general: "عام", language: "اللغة", 
+                security: "الأمان", vaultLock: "رمز المحفظة المخفية", recycleBin: "سلة المحذوفات", support: "الدعم",
+                navGen: "توليد", navVault: "المحفظة", btnCancel: "إلغاء",
+                deleteTitle: "حذف؟", deleteDesc: "نقل إلى سلة المحذوفات؟", btnDelete: "حذف",
+                setupPin: "تتعيين رمز", pinDesc: "أنشئ رمزًا من 4 أرقام", vaultLocked: "المحفظة مقفلة", enterPin: "أدخل الرمز",
+                emptyAll: "إفراغ الكل", binEmpty: "السلة فارغة", btnHide: "إخفاء", btnShow: "عرض", 
+                changePin: "تغيير الرمز", verifyPin: "التحقق", enterCurrentPin: "أدخل الرمز الحالي", enterNewPin: "أدخل الرمز الجديد",
+                secureNotes: "ملاحظات آمنة", noNotes: "لا ملاحظات", btnSend: "إرسال رسالة",
+                securityTips: "نصائح الأمان", extras: "إضافات", masterKey: "مفتاح التشفير الرئيسي",
+                btnEdit: "تعديل", btnRestore: "استعادة", noteTitle: "العنوان", noteContent: "محتوى سري",
+                confirmPermDelete: "حذف نهائيًا؟", confirmExit: "تأكيد",
+                recycleExpiry: "حذف تلقائي للمحذوفات", never: "أبداً", days30: "30 يوم", days60: "60 يوم", days90: "90 يوم",
+                proTheme: "سمة احترافية", haptic: "اهتزاز عند اللمس", antiScreen: "منع لقطة الشاشة",
+                lightTheme: "فاتح (افتراضي)", darkTheme: "داكن", neonTheme: "نيون أزرق", purpleTheme: "تدرج أرجواني",
+                greenTheme: "أخضر سيبراني", amoledTheme: "أسود AMOLED",
+                genPlaceholder: "اسم التطبيق (مثل فيسبوك)", msgPlaceholder: "اكتب رسالتك...",
+                masterKeyDesc: "تعيين مفتاح مخصص للعمليات الآمنة", masterKeyPlaceholder: "أدخل مفتاح مخصص",
+                noteTitlePlace: "العنوان (مثل رقم البنك)", noteContentPlace: "محتوى سري...", pinPlaceholder: "••••",
+                appVersion: "SafeKey Pro 1.0.0",
+                wizardTitle: "المعالج الذكي", wizardDesc: "ما هو الغرض؟", wizBasic: "وسائل التواصل",
+                wizStrong: "مصرفية (قوي)", wizUltra: "أمان فائق",
+                autoLock: "قفل تلقائي", sec10: "10 ثوان", sec30: "30 ثانية", min1: "1 دقيقة",
+                duplicateError: "تكرار! موجود في المحفظة.", duplicateFound: "مكرر",
+                fakePin: "تعيين رمز وهمي", setFakePin: "رمز وهمي", backup: "نسخة احتياطية", exportBackup: "تصدير",
+                hackerAlert: "تحذير: محاولات وصول غير مصرح بها!",
+                hiddenVault: "المحفظة المخفية", setupHiddenPin: "رمز المحفظة المخفية", moveToHidden: "إخفاء", unhide: "إظهار",
+                hiddenDesc: "للحسابات المصرفية والعملات المشفرة", enterHiddenPin: "أدخل الرمز السري",
+                dailyTitle: "اقتراح يومي", dailyDesc: "كلمة المرور الآمنة لليوم:",
+                dailySuggest: "كلمة مرور يومية", shakeGen: "رج للتوليد",
+                confirmEmptyBin: "حذف جميع العناصر نهائيًا؟", msgCopied: "نسخ"
+            }
+        };
+
+        const tipsContent = [
+            { title: "Strong Password Basics", text: "Use at least 12 chars, mix upper/lower cases, numbers & symbols. Avoid 'password123'." },
+            { title: "How Hackers Guess", text: "They use 'Brute Force' to try millions of combos or 'Dictionary Attacks' using common words." },
+            { title: "Avoid Personal Info", text: "Never use your name, birthday, or pet's name. These are easy to find on social media." },
+            { title: "Use Passphrases", text: "String random words together like 'Horse-Battery-Staple-Correct' for high security." },
+            { title: "2-Factor Auth (2FA)", text: "Always enable 2FA. Even if your password is stolen, they can't login without your phone." },
+            { title: "Unique Passwords", text: "Never reuse passwords. If one site is breached, all your accounts are at risk." },
+            { title: "Phishing Awareness", text: "Check URLs carefully. Hackers create fake login pages that look real." },
+            { title: "Update Regularly", text: "Change critical passwords every 3-6 months, especially for banking." },
+            { title: "Public Wi-Fi", text: "Avoid logging into sensitive accounts on public Wi-Fi without a VPN." },
+            { title: "Password Managers", text: "You are using one right now! Let apps remember complex passwords for you." }
+        ];
+        
+        // --- DOM Elements ---
+        const $ = (id) => document.getElementById(id);
+        const els = {
+            screens: document.querySelectorAll('.screen'),
+            navPills: document.querySelectorAll('.nav-pill'),
+            output: $('password-output'), subOutput: $('identity-sub'),
+            lengthSlider: $('length-slider'), lengthVal: $('length-val'),
+            langSelect: $('lang-select'), themeSelect: $('theme-select'),
+            pinPad: $('pin-pad'), pinModal: $('pin-modal'),
+            savedList: $('saved-list')
+        };
+
+        // --- Storage Helper ---
+        // Safely handles localStorage to prevent crashes in restricted environments (e.g. some mobile file viewers)
+        const storage = {
+            get: (key, def) => {
+                try {
+                    const val = localStorage.getItem(key);
+                    return val ? JSON.parse(val) : def;
+                } catch(e) { console.warn('Storage access denied', e); return def; }
+            },
+            set: (key, val) => {
+                try {
+                    localStorage.setItem(key, JSON.stringify(val));
+                } catch(e) { console.warn('Storage save failed', e); }
+            }
+        };
+
+        // --- State ---
+        // Initializing with safety checks for array types
+        const rawSaved = storage.get('pg_saved', []);
+        const rawDeleted = storage.get('pg_deleted', []);
+        const rawHistory = storage.get('pg_history', []);
+        const rawNotes = storage.get('pg_notes', []);
+
+        const state = {
+            mode: 'password', output: '', subOutput: '', isGenVisible: true,
+            options: { upper: true, lower: true, number: true, symbol: true, length: 12 },
+            passwords: Array.isArray(rawSaved) ? rawSaved : [],
+            deleted: Array.isArray(rawDeleted) ? rawDeleted : [],
+            history: Array.isArray(rawHistory) ? rawHistory : [],
+            notes: Array.isArray(rawNotes) ? rawNotes : [],
+            settings: storage.get('pg_settings', {
+                theme: "light", autoCopy: false, lang: "en", pin: null, 
+                hiddenPin: null, fakePin: null, pinEnabled: false, 
+                haptic: true, expiryDays: 0, privacy: false, shake: false, daily: false
+            }),
+            tempPin: '', vaultUnlocked: false, fakeMode: false, viewingHidden: false,
+            actionId: null, actionType: null, pinCallback: null,
+            filterFav: false, editingNoteId: null, selectedColor: 'blue'
+        };
+        
+        // --- Init ---
+        function init() {
+            setLanguage(state.settings.lang);
+            applyTheme(state.settings.theme);
+            
+            // Sync Settings Checkbox
+            $('setting-pin-lock').checked = state.settings.pinEnabled || false;
+            // Update Hidden Icon Visibility
+            $('btn-toggle-hidden').style.display = state.settings.pinEnabled ? 'block' : 'none';
+            
+            $('setting-shake').checked = state.settings.shake || false;
+            $('setting-daily-suggest').checked = state.settings.daily || false;
+            $('expiry-select').value = state.settings.expiryDays || 0;
+
+            // Auto-Clean Recycle Bin
+            const expireDays = parseInt(state.settings.expiryDays);
+            if (expireDays > 0) {
+                const now = Date.now();
+                const initialLen = state.deleted.length;
+                state.deleted = state.deleted.filter(item => {
+                    const deletedAt = item.deletedAt || 0;
+                    if(deletedAt === 0) return true;
+                    const diffTime = Math.abs(now - deletedAt);
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+                    return diffDays <= expireDays;
+                });
+                if(state.deleted.length !== initialLen) saveData();
+            }
+
+            setupNav();
+            setupGenerator();
+            setupSaved();
+            setupSettings();
+            setupNotes();
+            loadTips();
+            setupShake();
+            checkDaily();
+            setupEmailSupport(); // Initialize Email Support
+
+            // Interval to check for 7:00 AM/PM transitions if app is kept open
+            setInterval(checkDaily, 10000); // Check every 10 seconds for precise 7:00 trigger
+            
+            generate();
+            updateHistoryUI();
+            
+            // Privacy (Anti-Screenshot) Listener
+            document.addEventListener('visibilitychange', () => {
+                if(state.settings.privacy) {
+                    if (document.visibilityState === 'hidden') document.body.classList.add('blurred');
+                    else document.body.classList.remove('blurred');
+                }
+                // Check daily notification on app resume/focus
+                if (document.visibilityState === 'visible') {
+                    checkDaily();
+                }
+            });
+            if(state.settings.privacy) document.body.classList.add('privacy-active');
+        }
+
+        // --- Localization & Theme ---
+        function setLanguage(lang) {
+            state.settings.lang = lang;
+            els.langSelect.value = lang;
+            const isRtl = ['ur', 'ar'].includes(lang);
+            document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            const t = translations[lang] || translations['en'];
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                if(t[el.dataset.i18n]) {
+                    if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = t[el.dataset.i18n];
+                    } else if (el.tagName === 'OPTION') {
+                        el.textContent = t[el.dataset.i18n];
+                    } else {
+                        el.textContent = t[el.dataset.i18n];
+                    }
+                }
+            });
+            
+            updateVisBtn();
+            saveSettings();
+        }
+
+        function applyTheme(theme) {
+            state.settings.theme = theme;
+            $('theme-select').value = theme;
+            document.body.className = `theme-${theme}`;
+            if(state.settings.privacy) document.body.classList.add('privacy-active');
+            saveSettings();
+        }
+
+        // --- Email Support Logic ---
+        function setupEmailSupport() {
+            // Support Message
+            $('contact-send').addEventListener('click', () => {
+                 const msg = $('contact-msg').value;
+                 const targetEmail = "www.toolifyeasylifetools@gmail.com";
+                 window.location.href = `mailto:${targetEmail}?subject=Support Request - SafeKey Pro&body=${encodeURIComponent(msg)}`;
+            });
+
+            // OTP Request
+            $('btn-request-otp').addEventListener('click', () => {
+                 const targetEmail = "www.toolifyeasylifetools@gmail.com";
+                 
+                 // Show visual feedback first
+                 $('btn-request-otp').innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening Mail...';
+                 
+                 setTimeout(() => {
+                     // Open Mail Client
+                     window.location.href = `mailto:${targetEmail}?subject=OTP Request&body=Send Me The OTP`;
+                     
+                     // Reset Button Text
+                     $('btn-request-otp').innerHTML = '<i class="fa-solid fa-paper-plane"></i> Request OTP via Email';
+                     showToast("Check your email app");
+                 }, 800);
+            });
+        }
+
+        // --- Generator ---
+        function setupGenerator() {
+            $('tab-pass').addEventListener('click', () => setMode('password'));
+            $('tab-story').addEventListener('click', () => setMode('story'));
+            $('tab-identity').addEventListener('click', () => setMode('username'));
+            
+            els.lengthSlider.addEventListener('input', (e) => {
+                state.options.length = e.target.value;
+                els.lengthVal.textContent = state.options.length;
+                generate();
+            });
+            ['upper','lower','number','symbol'].forEach(k => {
+                $(`opt-${k}`).addEventListener('change', (e) => {
+                    state.options[k] = e.target.checked;
+                    if(!Object.values(state.options).some(v => v===true) && typeof state.options[k] === 'boolean') {
+                         e.target.checked = true; state.options[k] = true;
+                    }
+                    generate();
+                });
+            });
+
+            $('generate-btn').addEventListener('click', () => { generate(); vibrate(); });
+            $('wizard-btn').addEventListener('click', () => $('wizard-modal').classList.add('active'));
+            $('wiz-cancel').addEventListener('click', () => $('wizard-modal').classList.remove('active'));
+            
+            // Wizard Steps
+            $('wiz-basic').addEventListener('click', () => { updateWizard(8, true, true, true, false); });
+            $('wiz-strong').addEventListener('click', () => { updateWizard(14, true, true, true, true); });
+            $('wiz-ultra').addEventListener('click', () => { updateWizard(24, true, true, true, true); });
+
+            // Long Press Copy
+            let pressTimer;
+            $('action-copy').addEventListener('mousedown', () => { pressTimer = setTimeout(() => { copyText(state.output); if(navigator.vibrate) navigator.vibrate(50); }, 600); });
+            $('action-copy').addEventListener('touchstart', () => { pressTimer = setTimeout(() => { copyText(state.output); if(navigator.vibrate) navigator.vibrate(50); }, 600); });
+            $('action-copy').addEventListener('mouseup', () => clearTimeout(pressTimer));
+            $('action-copy').addEventListener('touchend', () => clearTimeout(pressTimer));
+            $('action-copy').addEventListener('click', () => copyText(state.output));
+            
+            // Direct Save with Modal
+            $('action-save-direct').addEventListener('click', () => {
+                const isDup = state.passwords.some(p => p.password === state.output && p.type === state.mode);
+                const t = translations[state.settings.lang] || translations['en'];
+                if(isDup) { showToast(t.duplicateError); vibrate(); return; }
+                
+                $('modal-save-title').value = '';
+                $('save-modal').classList.add('active');
+                setTimeout(() => $('modal-save-title').focus(), 100);
+            });
+            
+            $('save-cancel').addEventListener('click', () => $('save-modal').classList.remove('active'));
+            
+            $('save-confirm').addEventListener('click', () => {
+                const userTitle = $('modal-save-title').value.trim();
+                const typeStr = state.mode === 'username' ? "Username" : (state.mode === 'story' ? "Story" : "Password");
+                const date = new Date();
+                const timeStr = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                const finalTitle = userTitle || `${typeStr} - ${timeStr}`;
+
+                const item = { 
+                    id: Date.now(), 
+                    password: state.output, 
+                    identity: state.subOutput, 
+                    title: finalTitle, 
+                    type: state.mode, 
+                    date: date.toLocaleDateString(), 
+                    created: Date.now(), 
+                    favorite: false,
+                    isHidden: false
+                };
+                state.passwords.unshift(item);
+                saveData(); 
+                renderSaved();
+                $('save-modal').classList.remove('active');
+                showToast("Saved to Vault!");
+                vibrate();
+            });
+
+            $('action-hide').addEventListener('click', () => { state.isGenVisible = !state.isGenVisible; updateGenOutput(); updateVisBtn(); });
+        }
+        
+        function updateWizard(len, u, l, n, s) {
+            state.options.length = len;
+            state.options.upper = u; state.options.lower = l; state.options.number = n; state.options.symbol = s;
+            els.lengthSlider.value = len; els.lengthVal.textContent = len;
+            $('opt-upper').checked = u; $('opt-lower').checked = l; $('opt-number').checked = n; $('opt-symbol').checked = s;
+            generate();
+            $('wizard-modal').classList.remove('active');
+            vibrate();
+        }
+
+        function updateVisBtn() {
+            const t = translations[state.settings.lang] || translations['en'];
+            $('vis-icon-gen').className = state.isGenVisible ? 'fa-regular fa-eye-slash' : 'fa-regular fa-eye';
+            $('vis-text-gen').textContent = state.isGenVisible ? t.btnHide : t.btnShow;
+        }
+
+        function setMode(m) {
+            state.mode = m;
+            $('tab-pass').className = m === 'password' ? 'gen-tab active' : 'gen-tab';
+            $('tab-story').className = m === 'story' ? 'gen-tab active' : 'gen-tab';
+            $('tab-identity').className = m === 'username' ? 'gen-tab active' : 'gen-tab';
+            
+            $('options-password').style.display = m === 'password' ? 'block' : 'none';
+            $('strength-container').style.visibility = (m === 'password' || m === 'story') ? 'visible' : 'hidden';
+            els.subOutput.style.display = m === 'username' ? 'block' : 'none';
+            generate();
+        }
+
+        function generate() {
+            let limit = 0;
+            let generated = '';
+            let generatedSub = '';
+            let isUnique = false;
+
+            while (!isUnique && limit < 10) {
+                limit++;
+                if(state.mode === 'password') {
+                    const chars = { upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', lower: 'abcdefghijklmnopqrstuvwxyz', number: '0123456789', symbol: '!@#$%^&*()_+' };
+                    let set = '';
+                    if(state.options.upper) set += chars.upper;
+                    if(state.options.lower) set += chars.lower;
+                    if(state.options.number) set += chars.number;
+                    if(state.options.symbol) set += chars.symbol;
+                    if(!set) set = 'abcdefghijklmnopqrstuvwxyz1234567890'; 
+                    generated = '';
+                    
+                    const arr = new Uint32Array(state.options.length);
+                    // Compatibility Fix: Check if crypto is available (might not be on file://)
+                    if (window.crypto && window.crypto.getRandomValues) {
+                        window.crypto.getRandomValues(arr);
+                    } else {
+                        for(let i=0; i<state.options.length; i++) arr[i] = Math.floor(Math.random() * 0xFFFFFFFF);
+                    }
+
+                    for(let i=0; i<state.options.length; i++) generated += set[arr[i] % set.length];
+                } else if(state.mode === 'story') {
+                    // Passphrase Mode
+                    const nouns = ["Tiger","Dragon","Eagle","Robot","Ninja","Wizard","Pilot","Ghost","Alien","King","Queen","Wolf"];
+                    const verbs = ["Jumps","Flies","Runs","Sleeps","Hunts","Codes","Dances","Sings","Walks","Swims"];
+                    const adjs = ["Brave","Fast","Blue","Red","Neon","Silent","Happy","Wild","Dark","Cool","Mega"];
+                    const objects = ["Moon","Sun","River","City","Tower","Bridge","Mountain","Ocean","Star","Planet"];
+                    
+                    const r = (arr) => arr[Math.floor(Math.random() * arr.length)];
+                    const num = Math.floor(Math.random() * 99);
+                    generated = `${r(adjs)}-${r(nouns)}-${r(verbs)}-${r(objects)}-${num}`;
+                    generatedSub = "High Strength Story";
+                } else {
+                    const adj = ["Happy", "Blue", "Cool", "Swift", "Bright", "Neo", "Cyber", "Fast", "Iron", "Red", "Dark", "Light", "Hyper", "Mega", "Ultra", "Prime"];
+                    const noun = ["Eagle", "Fox", "Bear", "Wolf", "Tiger", "Coder", "Pilot", "Star", "Moon", "Sky", "Ninja", "Falcon", "Panther", "Viper", "Raven"];
+                    const rand = Math.floor(Math.random() * 9999);
+                    generated = adj[Math.floor(Math.random()*adj.length)] + noun[Math.floor(Math.random()*noun.length)] + rand;
+                    generatedSub = `${generated.toLowerCase()}@email.com`;
+                }
+                const inVault = state.passwords.some(p => p.password === generated);
+                const inHistory = state.history.some(h => h.val === generated);
+                if (!inVault && !inHistory) isUnique = true;
+            }
+
+            state.output = generated;
+            state.subOutput = generatedSub;
+
+            if(state.mode === 'password' || state.mode === 'story') {
+                calcStrength(generated);
+                els.subOutput.style.display = 'none';
+            } else {
+                els.subOutput.textContent = generatedSub;
+                els.subOutput.style.display = 'block';
+            }
+            
+            updateGenOutput();
+            addToHistory(state.output, state.mode);
+        }
+        
+        function updateGenOutput() {
+            els.output.textContent = state.isGenVisible ? state.output : '••••••••';
+        }
+
+        function calcStrength(pw) {
+            let s = 0;
+            if (state.mode === 'story') {
+                s = 4; // Stories are inherently strong
+            } else {
+                if(pw.length > 8) s++; if(pw.length > 12) s++; if(/[A-Z]/.test(pw) && /[0-9]/.test(pw)) s++; if(/[^A-Za-z0-9]/.test(pw)) s++;
+            }
+            const lvl = Math.min(4, Math.max(0, pw.length < 6 ? 1 : s));
+            const t = translations[state.settings.lang] || translations['en'];
+            const strLabels = [t.strWeak, t.strWeak, t.strGood, t.strStrong, "Excellent"];
+            $('strength-text').textContent = strLabels[lvl];
+            $('strength-meter-color').className = `strength-bars-track level-${lvl}`;
+        }
+
+        function addToHistory(val, type) {
+            if(state.history.length > 0 && state.history[0].val === val) return;
+            state.history.unshift({ val, type, date: Date.now() });
+            if(state.history.length > 5) state.history.pop();
+            storage.set('pg_history', state.history);
+            updateHistoryUI();
+        }
+        function updateHistoryUI() {
+            const list = $('history-list'); if(!state.history.length) return;
+            list.innerHTML = '';
+            state.history.forEach(h => {
+                const div = document.createElement('div'); div.className = 'history-item';
+                div.innerHTML = `<span class="history-text">${h.val}</span> <i class="fa-regular fa-copy" onclick="copyText('${h.val}')" style="cursor:pointer; color:var(--primary)"></i>`;
+                list.appendChild(div);
+            });
+        }
+
+        // --- Shake to Generate ---
+        let lastShake = 0;
+        function setupShake() {
+            if (window.DeviceMotionEvent) {
+                window.addEventListener('devicemotion', (event) => {
+                    if (!state.settings.shake) return;
+                    if (!document.getElementById('screen-generator').classList.contains('active')) return;
+                    
+                    const acc = event.accelerationIncludingGravity;
+                    if (!acc) return;
+                    const { x, y, z } = acc;
+                    const total = Math.sqrt(x*x + y*y + z*z);
+                    if (total > 20) { // Threshold
+                        const now = Date.now();
+                        if (now - lastShake > 1000) {
+                            lastShake = now;
+                            generate();
+                            vibrate();
+                        }
+                    }
+                });
+            }
+        }
+
+        // --- Daily Suggestion ---
+        function checkDaily() {
+            // Strict Toggle Check
+            if (!state.settings.daily) return;
+            
+            const now = new Date();
+            const currentHour = now.getHours();
+            const dateStr = now.toDateString(); 
+            
+            // Check Notification Permission (Silent check)
+            if ("Notification" in window && Notification.permission !== "granted") {
+                 // Do nothing, just continue logic for in-app modal
+            }
+
+            // Logic: 7:00 AM Slot (07:00 - 18:59)
+            // If user opens app at 7:01 AM or 2:00 PM, they see the AM slot if not seen yet today.
+            if (currentHour >= 7 && currentHour < 19) {
+                // Use try-catch for plain storage get
+                let lastAM;
+                try { lastAM = localStorage.getItem('pg_daily_last_shown_am'); } catch(e) {}
+                
+                if (lastAM !== dateStr) {
+                    showDailyNotification(dateStr, 'am');
+                }
+            }
+            // Logic: 7:00 PM Slot (19:00 - 23:59)
+            // Simplified logic: If it's evening, show the PM slot.
+            // Note: 00:00 to 06:59 is ignored to avoid date confusion, effectively resetting for 7 AM.
+            else if (currentHour >= 19) {
+                let lastPM;
+                try { lastPM = localStorage.getItem('pg_daily_last_shown_pm'); } catch(e) {}
+                
+                if (lastPM !== dateStr) {
+                    showDailyNotification(dateStr, 'pm');
+                }
+            }
+        }
+
+        function showDailyNotification(dateStr, type) {
+            // Generate Password
+            const arr = new Uint32Array(16);
+            if (window.crypto && window.crypto.getRandomValues) {
+                window.crypto.getRandomValues(arr);
+            } else {
+                 for(let i=0; i<16; i++) arr[i] = Math.floor(Math.random() * 0xFFFFFFFF);
+            }
+            const set = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+            let dailyPass = '';
+            for(let i=0; i<16; i++) dailyPass += set[arr[i] % set.length];
+            
+            // System Notification (Only if possible/granted)
+            try {
+                if ("Notification" in window && Notification.permission === "granted") {
+                    const t = translations[state.settings.lang] || translations['en'];
+                    const notification = new Notification(t.dailySuggest, {
+                        body: dailyPass,
+                        tag: 'daily-pass',
+                        icon: 'https://cdn-icons-png.flaticon.com/512/3064/3064197.png'
+                    });
+                    
+                    notification.onclick = function() {
+                        window.focus();
+                        copyText(dailyPass);
+                        notification.close();
+                    };
+                }
+            } catch(e) { console.error(e); }
+
+            // App Modal
+            $('daily-password').textContent = dailyPass;
+            $('daily-modal').classList.add('active');
+            
+            // "Close" is actually "Cancel" action
+            $('daily-close').onclick = () => $('daily-modal').classList.remove('active');
+            $('daily-copy').onclick = () => { copyText(dailyPass); $('daily-modal').classList.remove('active'); };
+            
+            // Mark as shown immediately
+            try {
+                localStorage.setItem(type === 'am' ? 'pg_daily_last_shown_am' : 'pg_daily_last_shown_pm', dateStr);
+            } catch(e) {}
+        }
+
+        // --- Saved / Vault ---
+        function setupSaved() {
+            $('btn-toggle-hidden').addEventListener('click', toggleHiddenVault);
+            $('modal-cancel').addEventListener('click', () => $('confirm-modal').classList.remove('active'));
+            $('modal-delete').addEventListener('click', () => {
+                if(state.actionType === 'delete') {
+                    let item;
+                    const timestamp = Date.now();
+                    
+                    if(state.editingNoteId !== null) {
+                         const idx = state.notes.findIndex(n => n.id === state.actionId);
+                         if(idx !== -1) {
+                             item = state.notes.splice(idx, 1)[0];
+                             item.dataType = 'note';
+                             item.deletedAt = timestamp;
+                             state.deleted.unshift(item);
+                             storage.set('pg_notes', state.notes);
+                             renderNotes();
+                         }
+                    } else {
+                        const idx = state.passwords.findIndex(p => p.id === state.actionId);
+                        if(idx !== -1) {
+                            item = state.passwords.splice(idx, 1)[0];
+                            item.dataType = 'password';
+                            item.deletedAt = timestamp;
+                            state.deleted.unshift(item);
+                        }
+                    }
+                    saveData(); renderSaved();
+                    // Notification
+                    showToast("Deleted"); 
+                } else if (state.actionType === 'permDelete') {
+                     state.deleted.splice(state.actionId, 1);
+                     saveData(); renderRecycle();
+                } else if (state.actionType === 'emptyBin') {
+                     state.deleted = [];
+                     saveData(); renderRecycle();
+                }
+                $('confirm-modal').classList.remove('active');
+            });
+        }
+
+        // --- Hidden Vault Logic ---
+        function toggleHiddenVault() {
+             const t = translations[state.settings.lang] || translations['en'];
+             
+             if (state.viewingHidden) {
+                 // Exit Hidden Mode
+                 state.viewingHidden = false;
+                 exitHiddenMode();
+                 renderSaved();
+                 return;
+             }
+
+             // Enter Hidden Mode - Always ask for PIN since we are entering
+             showPinModal('verify', (code) => {
+                 if (code === state.settings.pin) {
+                     enterHiddenMode();
+                 } else {
+                     showToast("Wrong PIN", true); 
+                     vibrate();
+                 }
+             }, t.enterPin, true); // true for showReset
+        }
+
+        function enterHiddenMode() {
+             state.viewingHidden = true;
+             // Removed mode-hidden to keep selected theme
+             // document.body.classList.add('mode-hidden');
+             const t = translations[state.settings.lang] || translations['en'];
+             $('vault-title').textContent = t.hiddenVault;
+             $('btn-toggle-hidden').style.color = 'var(--danger)';
+             $('btn-toggle-hidden').className = 'fa-solid fa-arrow-left'; 
+             renderSaved();
+             vibrate();
+        }
+
+        function exitHiddenMode() {
+             // document.body.classList.remove('mode-hidden');
+             const t = translations[state.settings.lang] || translations['en'];
+             $('vault-title').textContent = t.yourVault;
+             $('btn-toggle-hidden').style.color = 'var(--text-muted)';
+             $('btn-toggle-hidden').className = 'fa-solid fa-user-secret';
+        }
+
+        function renderSaved() {
+            els.savedList.innerHTML = '';
+            const t = translations[state.settings.lang] || translations['en'];
+            
+            // Fake Mode check
+            if (state.fakeMode) {
+                $('empty-state').style.display = 'block';
+                return;
+            }
+
+            // Filter for Hidden vs Normal
+            let filtered = state.passwords.filter(p => !!p.isHidden === state.viewingHidden);
+            
+            if(state.filterFav) filtered = filtered.filter(p => p.favorite);
+            
+            // Find Duplicates for Display
+            const passwordCounts = {};
+            state.passwords.forEach(p => { passwordCounts[p.password] = (passwordCounts[p.password] || 0) + 1; });
+
+            filtered.sort((a, b) => (b.favorite === a.favorite) ? 0 : b.favorite ? 1 : -1);
+
+            // Empty State Logic
+            if (filtered.length === 0) {
+                 if (state.viewingHidden) {
+                     // Specific empty state for Hidden Vault
+                     $('empty-state').innerHTML = `
+                        <div style="width: 80px; height: 80px; background: var(--surface); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: var(--shadow);">
+                            <i class="fa-solid fa-user-shield" style="font-size: 2rem; opacity: 0.5; color: var(--danger);"></i>
+                        </div>
+                        <h3 style="margin: 0; color: var(--text-main);">Hidden Vault</h3>
+                        <p style="color: var(--text-muted); margin-top: 0.5rem; font-size: 0.9rem;">Secure Banking, Crypto & Sensitive logins here.</p>
+                     `;
+                 } else {
+                     // Standard empty state
+                     $('empty-state').innerHTML = `
+                        <div style="width: 80px; height: 80px; background: var(--surface); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: var(--shadow);">
+                            <i class="fa-solid fa-folder-open" style="font-size: 2rem; opacity: 0.5;"></i>
+                        </div>
+                        <h3 style="margin: 0; color: var(--text-main);">${t.noPasswords}</h3>
+                     `;
+                 }
+                 $('empty-state').style.display = 'block';
+            } else {
+                $('empty-state').style.display = 'none';
+            }
+            
+            filtered.forEach(p => {
+                const isUser = p.type === 'username';
+                const isNote = p.type === 'note'; 
+                const isFav = p.favorite;
+                const isDup = passwordCounts[p.password] > 1;
+                
+                let displayContent = '••••••••';
+                let contentClass = 'saved-pass-content';
+                let displayTitle = p.title;
+                
+                const div = document.createElement('div');
+                div.className = `saved-card ${isFav ? 'favorite' : ''} ${isDup ? 'duplicate' : ''}`;
+                
+                let iconClass = isUser ? 'fa-user' : (isNote ? 'fa-sticky-note' : 'fa-key');
+
+                div.innerHTML = `
+                    <div class="saved-header">
+                        <div class="saved-title">
+                            <i class="fa-solid ${iconClass}"></i> ${displayTitle}
+                            ${isDup ? `<span class="duplicate-badge" data-i18n="duplicateFound">${t.duplicateFound}</span>` : ''}
+                        </div>
+                        <div class="saved-meta">
+                           ${p.date}
+                        </div>
+                    </div>
+                    <div class="${contentClass}" id="p-${p.id}" onclick="toggleVis(${p.id})">••••••••</div>
+                    ${(isUser && p.identity) ? `<div style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;">${p.identity}</div>` : ''}
+                    <div class="saved-footer" style="margin-top:0.5rem;">
+                        <div class="saved-actions">
+                            <button class="icon-sm-btn btn-vis" onclick="toggleVis(${p.id})"><i class="fa-regular fa-eye"></i></button>
+                            <button class="icon-sm-btn btn-copy" onclick="copyText('${p.password}')"><i class="fa-solid fa-copy"></i></button>
+                            <button class="icon-sm-btn btn-hide" onclick="toggleHide(${p.id})"><i class="fa-solid ${p.isHidden ? 'fa-unlock' : 'fa-lock'}"></i></button>
+                            ${!isNote ? `<button class="icon-sm-btn btn-star ${isFav?'active':''}" onclick="toggleFav(${p.id})"><i class="fa-solid fa-star"></i></button>` : ''}
+                            <button class="icon-sm-btn btn-del" onclick="askDelete(${p.id})"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
+                els.savedList.appendChild(div);
+            });
+        }
+        
+        window.toggleVis = (id) => { const el = document.getElementById(`p-${id}`); const item = state.passwords.find(p => p.id === id); if(el.textContent.includes('•')) el.textContent = item.password; else el.textContent = '••••••••'; };
+        window.toggleFav = (id) => { 
+            const item = state.passwords.find(p => p.id === id);
+            if(item) { item.favorite = !item.favorite; saveData(); renderSaved(); vibrate(); }
+        };
+        
+        // Smart Hide/Unhide Logic
+        window.toggleHide = (id) => {
+            const item = state.passwords.find(p => p.id === id);
+            const t = translations[state.settings.lang] || translations['en'];
+            const isNote = item.type === 'note';
+
+            if (!item.isHidden) {
+                // Hiding: Move to Hidden Vault
+                if (!state.settings.pinEnabled) {
+                     // If feature disabled, ask to enable
+                     showPinModal('setup', (code) => {
+                        state.settings.pin = code;
+                        state.settings.pinEnabled = true;
+                        saveSettings();
+                        $('setting-pin-lock').checked = true;
+                        $('btn-toggle-hidden').style.display = 'block';
+
+                        item.isHidden = true;
+                        saveData();
+                        renderSaved(); // Re-render current list (item disappears)
+                        showToast("Moved to Hidden Vault");
+                     }, t.setupPin, true); // showReset=true since it's inside Setup flow now requested by user
+                } else {
+                     // Direct move
+                     item.isHidden = true;
+                     saveData();
+                     renderSaved(); // Re-render current list (item disappears)
+                     showToast("Moved to Hidden Vault");
+                }
+
+            } else {
+                // Unhiding: Move OUT of Hidden Vault
+                item.isHidden = false;
+                
+                if (isNote) {
+                    // Remove from passwords array, add to notes array
+                    const idx = state.passwords.findIndex(p => p.id === id);
+                    if (idx > -1) state.passwords.splice(idx, 1);
+                    
+                    // Reconstruct note object
+                    state.notes.unshift({ 
+                        id: item.id, 
+                        title: item.title, 
+                        content: item.password, 
+                        color: 'blue', 
+                        date: item.date, 
+                        pinned: false 
+                    });
+                    
+                    storage.set('pg_notes', state.notes);
+                    saveData();
+                    renderSaved(); 
+                    showToast("Restored to Secure Notes");
+
+                } else {
+                    // Standard Password: just unhide
+                    saveData();
+                    renderSaved();
+                    showToast("Restored to Vault");
+                }
+            }
+        };
+
+        window.askDelete = (id) => { 
+            state.actionId = id; 
+            state.actionType = 'delete';
+            state.editingNoteId = null;
+            const t = translations[state.settings.lang] || translations['en'];
+            $('confirm-desc').textContent = t.deleteDesc;
+            $('confirm-modal').classList.add('active'); 
+        };
+        
+        // --- Secure Notes ---
+        function setupNotes() {
+            $('btn-open-notes').addEventListener('click', () => { switchScreen('notes'); renderNotes(); });
+            $('btn-add-note').addEventListener('click', () => { 
+                state.editingNoteId = null;
+                $('note-title').value = ''; $('note-content').value = ''; state.selectedColor = 'blue';
+                updateColorSelection();
+                $('note-form').style.display = 'block'; $('notes-list').style.display = 'none'; $('notes-empty').style.display='none'; $('btn-add-note').style.display='none'; 
+            });
+            $('cancel-note-btn').addEventListener('click', () => { resetNoteForm(); renderNotes(); });
+            
+            // Color Selection
+            document.querySelectorAll('.color-radio').forEach(r => {
+                r.addEventListener('click', (e) => {
+                    state.selectedColor = e.target.dataset.color;
+                    updateColorSelection();
+                });
+            });
+
+            $('save-note-btn').addEventListener('click', () => {
+                const title = $('note-title').value.trim();
+                const content = $('note-content').value.trim();
+                if(!title || !content) { showToast("Empty fields!"); return; }
+                
+                if (state.editingNoteId) {
+                    const note = state.notes.find(n => n.id === state.editingNoteId);
+                    if(note) { note.title = title; note.content = content; note.color = state.selectedColor; note.date = new Date().toLocaleDateString(); }
+                } else {
+                    state.notes.unshift({ id: Date.now(), title, content, color: state.selectedColor, date: new Date().toLocaleDateString(), pinned: false });
+                }
+                
+                storage.set('pg_notes', state.notes);
+                resetNoteForm(); renderNotes(); showToast(state.editingNoteId ? "Note Updated" : "Note Saved");
+            });
+        }
+        function updateColorSelection() {
+            document.querySelectorAll('.color-radio').forEach(r => {
+                r.classList.toggle('selected', r.dataset.color === state.selectedColor);
+            });
+        }
+        function resetNoteForm() {
+            $('note-form').style.display = 'none'; $('notes-list').style.display = 'block'; $('btn-add-note').style.display='block';
+            state.editingNoteId = null;
+        }
+        function renderNotes() {
+            const list = $('notes-list'); list.innerHTML = '';
+            
+            // Fake Mode check for Notes
+            if (state.fakeMode) {
+                 $('notes-empty').style.display = 'block';
+                 return;
+            }
+
+            // Sorting: Pinned (Starred) first
+            state.notes.sort((a, b) => (b.pinned === a.pinned) ? 0 : b.pinned ? 1 : -1);
+
+            $('notes-empty').style.display = state.notes.length ? 'none' : 'block';
+            state.notes.forEach((n) => {
+                const div = document.createElement('div'); 
+                div.className = `note-card note-${n.color || 'blue'} ${n.pinned ? 'pinned' : ''}`;
+                div.innerHTML = `
+                    <div class="note-header"><span><i class="fa-solid fa-lock"></i> ${n.title}</span> ${n.pinned ? '<i class="fa-solid fa-star" style="font-size:0.8rem; color:var(--warning);"></i>' : ''}</div>
+                    <div class="note-content">${n.content}</div>
+                    <div class="note-actions">
+                         <button class="icon-sm-btn btn-copy" onclick="copyText('${n.content}')"><i class="fa-solid fa-copy"></i></button>
+                         <button class="icon-sm-btn btn-star ${n.pinned ? 'active' : ''}" onclick="toggleNotePin(${n.id})"><i class="fa-solid fa-star"></i></button>
+                         <button class="icon-sm-btn btn-hide" onclick="moveNoteToVault(${n.id})"><i class="fa-solid fa-lock"></i></button>
+                         <button class="icon-sm-btn btn-edit" onclick="editNote(${n.id})"><i class="fa-solid fa-pen"></i></button>
+                         <button class="icon-sm-btn btn-del" onclick="deleteNote(${n.id})"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+        }
+        
+        window.toggleNotePin = (id) => {
+            const note = state.notes.find(n => n.id === id);
+            if(note) {
+                note.pinned = !note.pinned;
+                storage.set('pg_notes', state.notes);
+                renderNotes();
+                vibrate();
+            }
+        };
+
+        window.moveNoteToVault = (id) => {
+            const t = translations[state.settings.lang] || translations['en'];
+            
+            // Setup PIN if not exists or feature disabled
+            if (!state.settings.pinEnabled) {
+                showPinModal('setup', (code) => {
+                    state.settings.pin = code;
+                    state.settings.pinEnabled = true;
+                    saveSettings();
+                    $('setting-pin-lock').checked = true;
+                    $('btn-toggle-hidden').style.display = 'block';
+                    
+                    performMoveNote(id);
+                }, t.setupPin, true); // true = show reset button in this modal too
+            } else {
+                performMoveNote(id);
+            }
+        };
+        
+        function performMoveNote(id) {
+             const idx = state.notes.findIndex(n => n.id === id);
+             if(idx !== -1) {
+                const note = state.notes.splice(idx, 1)[0];
+                const item = {
+                    id: Date.now(),
+                    password: note.content,
+                    title: note.title, 
+                    type: 'note',
+                    identity: '',
+                    date: new Date().toLocaleDateString(),
+                    created: Date.now(),
+                    favorite: false,
+                    isHidden: true // Direct to Hidden
+                };
+                
+                state.passwords.unshift(item);
+                saveData();
+                storage.set('pg_notes', state.notes);
+                renderNotes();
+                showToast("Moved to Hidden Vault");
+            }
+        }
+
+        window.editNote = (id) => {
+             state.editingNoteId = id;
+             const note = state.notes.find(n => n.id === id);
+             if(note) {
+                 $('note-title').value = note.title;
+                 $('note-content').value = note.content;
+                 state.selectedColor = note.color || 'blue';
+                 updateColorSelection();
+                 $('note-form').style.display = 'block'; 
+                 $('notes-list').style.display = 'none'; 
+                 $('notes-empty').style.display='none'; 
+                 $('btn-add-note').style.display='none';
+             }
+        };
+
+        window.deleteNote = (id) => {
+             state.actionId = id; 
+             state.actionType = 'delete';
+             state.editingNoteId = id; // Marker to know it is a note
+             const t = translations[state.settings.lang] || translations['en'];
+             $('confirm-desc').textContent = t.deleteDesc;
+             $('confirm-modal').classList.add('active'); 
+        };
+
+        // --- Helpers & Missing Functions ---
+        
+        function copyText(txt) {
+            if(!txt) return;
+            
+            const handleSuccess = () => {
+                // STRICT SUPPRESSION IN HIDDEN VAULT
+                if(state.viewingHidden) return; 
+
+                const t = translations[state.settings.lang] || translations['en'];
+                showToast(t.msgCopied || "Copied!");
+                vibrate();
+            };
+
+            // Attempt 1: Modern API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(txt).then(handleSuccess).catch(err => {
+                    // Fallback if API fails (e.g. non-secure context)
+                    fallbackCopyText(txt, handleSuccess);
+                });
+            } else {
+                // Attempt 2: Fallback
+                fallbackCopyText(txt, handleSuccess);
+            }
+        }
+
+        function fallbackCopyText(txt, callback) {
+            try {
+                const textArea = document.createElement("textarea");
+                textArea.value = txt;
+                
+                // Ensure textarea is not visible but part of DOM
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+                textArea.style.opacity = "0";
+
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                if (successful && callback) callback();
+            } catch (err) {
+                console.error('Fallback copy failed', err);
+            }
+        }
+
+        function showToast(msg, force) {
+            // STRICT SUPPRESSION IN HIDDEN VAULT unless forced (errors)
+            if (state.viewingHidden && !force) return; 
+
+            const toast = $('toast');
+            $('toast-msg').textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(state.toastTimer);
+            state.toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        function saveData() {
+            storage.set('pg_saved', state.passwords);
+            storage.set('pg_deleted', state.deleted);
+        }
+
+        function saveSettings() {
+            storage.set('pg_settings', state.settings);
+        }
+
+        function vibrate() {
+            if(state.settings.haptic !== false && navigator.vibrate) navigator.vibrate(40);
+        }
+
+        function switchScreen(id) {
+            // Auto Lock Hidden Vault on navigation away
+            // Only if we are currently viewing hidden, and we switch to ANY other screen
+            if (state.viewingHidden) {
+                exitHiddenMode();
+                state.viewingHidden = false;
+            }
+
+            els.screens.forEach(s => s.classList.remove('active'));
+            $(`screen-${id}`).classList.add('active');
+            
+            els.navPills.forEach(p => {
+                if(p.dataset.target === id) p.classList.add('active');
+                else p.classList.remove('active');
+            });
+            
+            // Re-render if switching to vault
+            if(id === 'saved') {
+                 renderSaved();
+            }
+            window.scrollTo(0,0);
+        }
+
+        function setupNav() {
+            els.navPills.forEach(btn => {
+                btn.addEventListener('click', () => switchScreen(btn.dataset.target));
+            });
+            
+            $('btn-open-recycle').addEventListener('click', () => { switchScreen('recycle'); renderRecycle(); });
+            $('btn-open-tips').addEventListener('click', () => { switchScreen('tips'); loadTips(); });
+            // Features Button Removed
+            $('settings-btn').addEventListener('click', () => { switchScreen('settings'); });
+        }
+
+        function setupSettings() {
+            $('lang-select').addEventListener('change', (e) => setLanguage(e.target.value));
+            $('theme-select').addEventListener('change', (e) => applyTheme(e.target.value));
+            $('setting-shake').addEventListener('change', (e) => { state.settings.shake = e.target.checked; saveSettings(); });
+            $('setting-daily-suggest').addEventListener('change', (e) => { state.settings.daily = e.target.checked; saveSettings(); });
+
+            $('expiry-select').addEventListener('change', (e) => { state.settings.expiryDays = parseInt(e.target.value); saveSettings(); });
+            
+            // PIN Toggle with Verification Logic
+            $('setting-pin-lock').addEventListener('change', (e) => {
+                if(e.target.checked) {
+                    // Enable: Setup PIN
+                     const t = translations[state.settings.lang] || translations['en'];
+                    showPinModal('setup', (code) => {
+                        state.settings.pin = code;
+                        state.settings.pinEnabled = true;
+                        saveSettings();
+                        $('setting-pin-lock').checked = true;
+                        $('btn-change-pin').style.display = 'flex';
+                        $('btn-toggle-hidden').style.display = 'block'; // Show spy icon
+                        showToast("Hidden Vault Enabled");
+                    }, t.setupPin, true); // Show Reset Button
+                    e.target.checked = false; // Wait for confirmation
+                } else {
+                    // Disable: Ask for PIN first
+                    e.preventDefault();
+                    e.target.checked = true; // Revert visually immediately
+                    const t = translations[state.settings.lang] || translations['en'];
+                    
+                    showPinModal('verify', (code) => {
+                        if (code === state.settings.pin) {
+                            state.settings.pinEnabled = false;
+                            saveSettings();
+                            $('setting-pin-lock').checked = false;
+                            $('btn-change-pin').style.display = 'none';
+                            $('btn-toggle-hidden').style.display = 'none'; // Hide spy icon
+                            showToast("Hidden Vault Disabled");
+                        } else {
+                            showToast("Wrong PIN", true);
+                        }
+                    }, t.enterPin, true); // Show Reset Button
+                }
+            });
+            if(state.settings.pinEnabled) $('btn-change-pin').style.display = 'flex';
+            
+            $('btn-change-pin').addEventListener('click', () => {
+                 const t = translations[state.settings.lang] || translations['en'];
+                 showPinModal('verify', (oldCode) => {
+                     if(oldCode === state.settings.pin) {
+                         showPinModal('setup', (newCode) => {
+                             state.settings.pin = newCode;
+                             saveSettings();
+                             showToast("PIN Updated");
+                         }, t.changePin);
+                     } else {
+                         showToast("Wrong PIN", true);
+                     }
+                 }, t.enterCurrentPin);
+            });
+        }
+        
+        // --- Recycle Bin ---
+        function renderRecycle() {
+            const list = $('recycle-list'); list.innerHTML = '';
+            $('recycle-empty').style.display = state.deleted.length ? 'none' : 'block';
+            
+            state.deleted.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = 'saved-card';
+                div.style.borderColor = 'var(--text-muted)';
+                const isNote = item.dataType === 'note';
+                
+                div.innerHTML = `
+                    <div class="saved-header">
+                        <div class="saved-title" style="color:var(--text-muted); text-decoration:line-through;">
+                            <i class="fa-solid ${isNote ? 'fa-sticky-note' : 'fa-key'}"></i> ${item.title}
+                        </div>
+                    </div>
+                    <div style="font-size:0.8rem; color:var(--text-muted); margin:5px 0;">Deleted: ${new Date(item.deletedAt || Date.now()).toLocaleDateString()}</div>
+                    <div class="saved-footer">
+                        <div class="saved-actions" style="width:100%; justify-content:flex-end;">
+                            <button class="icon-sm-btn btn-restore" onclick="restoreItem(${index})"><i class="fa-solid fa-rotate-left"></i></button>
+                            <button class="icon-sm-btn btn-del" onclick="permDelete(${index})"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+        }
+        
+        $('btn-empty-bin').addEventListener('click', () => {
+            if(!state.deleted.length) return;
+            state.actionType = 'emptyBin';
+            const t = translations[state.settings.lang] || translations['en'];
+            $('confirm-desc').textContent = t.confirmEmptyBin || "Permanently delete all?";
+            $('confirm-modal').classList.add('active');
+        });
+
+        window.restoreItem = (index) => {
+            const item = state.deleted.splice(index, 1)[0];
+            
+            if (item.dataType === 'note') {
+                delete item.deletedAt; delete item.dataType;
+                state.notes.unshift(item);
+                storage.set('pg_notes', state.notes);
+            } else {
+                delete item.deletedAt; delete item.dataType;
+                state.passwords.unshift(item);
+            }
+            saveData(); renderRecycle();
+            showToast("Restored");
+        };
+
+        window.permDelete = (index) => {
+            state.actionId = index;
+            state.actionType = 'permDelete';
+            const t = translations[state.settings.lang] || translations['en'];
+            $('confirm-desc').textContent = t.confirmPermDelete;
+            $('confirm-modal').classList.add('active');
+        };
+
+        // --- Tips ---
+        function loadTips() {
+            const list = $('tips-list');
+            tipsContent.forEach(tip => {
+                const div = document.createElement('div');
+                div.className = 'tip-card';
+                div.innerHTML = `<div class="tip-title"><i class="fa-solid fa-shield-halved"></i> ${tip.title}</div><div class="tip-content">${tip.text}</div>`;
+                list.appendChild(div);
+            });
+        }
+
+        // --- PIN Modal System ---
+        function showPinModal(mode, callback, title, showReset = false) {
+             const t = translations[state.settings.lang] || translations['en'];
+             
+             $('pin-modal-title').textContent = title || t.enterPin;
+             $('pin-modal-desc').textContent = (mode === 'setup') ? t.pinDesc : t.enterPin;
+             $('pin-input-field').value = '';
+             $('pin-modal').classList.add('active');
+             $('pin-input-field').focus();
+             state.tempPin = '';
+             
+             // Handle Reset Button Visibility
+             const resetContainer = $('pin-reset-container');
+             resetContainer.style.display = showReset ? 'block' : 'none';
+             
+             // Clear previous listeners to avoid stacking
+             const newConfirm = $('pin-modal-confirm').cloneNode(true);
+             $('pin-modal-confirm').parentNode.replaceChild(newConfirm, $('pin-modal-confirm'));
+             
+             const newReset = $('pin-modal-reset').cloneNode(true);
+             $('pin-modal-reset').parentNode.replaceChild(newReset, $('pin-modal-reset'));
+             
+             $('pin-modal-reset').onclick = () => {
+                 $('pin-modal').classList.remove('active');
+                 showOTPModal();
+             };
+
+             $('pin-modal-confirm').addEventListener('click', () => {
+                 const val = $('pin-input-field').value;
+                 if(val.length === 4) {
+                     $('pin-modal').classList.remove('active');
+                     callback(val);
+                 }
+             });
+        }
+        
+        $('pin-modal-cancel').addEventListener('click', () => {
+            $('pin-modal').classList.remove('active');
+            // Revert Toggle Switch visual state if cancelled during setup
+            if($('setting-pin-lock').checked !== state.settings.pinEnabled) {
+                $('setting-pin-lock').checked = state.settings.pinEnabled;
+            }
+        });
+        
+        // --- OTP / Reset System ---
+        function showOTPModal() {
+            $('otp-modal').classList.add('active');
+            $('otp-step-1').style.display = 'block';
+            $('otp-input').value = '';
+        }
+        
+        $('otp-cancel').addEventListener('click', () => $('otp-modal').classList.remove('active'));
+        
+        $('btn-request-otp').addEventListener('click', () => {
+             // Visual feedback
+             $('btn-request-otp').innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Opening Mail...';
+             setTimeout(() => {
+                 const targetEmail = "www.toolifyeasylifetools@gmail.com";
+                 window.location.href = `mailto:${targetEmail}?subject=OTP Request&body=Send Me The OTP`;
+                 
+                 $('btn-request-otp').innerHTML = '<i class="fa-solid fa-paper-plane"></i> Request OTP via Email';
+                 showToast("Check your email app");
+             }, 800);
+        });
+
+        // OTP Validation Logic
+        const validOTPs = ["8630", "1180", "7110", "3170", "8057", "5990", "6780", "5750", "6786", "7170"];
+
+        $('otp-verify').addEventListener('click', () => {
+             const otp = $('otp-input').value.trim();
+             
+             if(validOTPs.includes(otp)) { 
+                 $('otp-modal').classList.remove('active');
+                 
+                 // Reuse the SETUP PIN modal immediately to get new password
+                 showPinModal('setup', (newCode) => {
+                     // 1. Update PIN
+                     state.settings.pin = newCode;
+                     state.settings.pinEnabled = true;
+                     
+                     // 2. Save
+                     saveSettings();
+                     
+                     // 3. Keep existing data HIDDEN (do not change isHidden flags)
+                     // But immediately UNLOCK the view so user can see it
+                     enterHiddenMode();
+                     
+                     // 4. Update UI
+                     $('setting-pin-lock').checked = true;
+                     $('btn-change-pin').style.display = 'flex';
+                     $('btn-toggle-hidden').style.display = 'block';
+                     
+                     showToast("PIN Reset. Vault Unlocked.");
+                     vibrate();
+                     
+                 }, "Set New PIN"); // Custom Title
+                 
+             } else {
+                 showToast("Invalid OTP", true);
+                 vibrate();
+             }
+        });
+
+        // Run
+        init();
+    </script>
+</body>
+</html>
